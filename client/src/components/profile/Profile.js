@@ -103,7 +103,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className="row mb-3">
             <div className="card card-body  border-0">
               <div className="row">
-                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
+                <div className="col-lg-4 col-md-6 col-sm-11 ml-auto mr-auto">
                   <div className="mb-4 honeydew">
                     {profile.skills.length > 0 ? (
                       <Fragment>
@@ -117,21 +117,6 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                     )}
                   </div>
                 </div>
-                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
-                  <div className="mb-4 honeydew">
-                    {profile.hobbies.length > 0 ? (
-                      <Fragment>
-                        <h5 className=" personalInfoHeader">Hobbies</h5>
-                        {profile.hobbies.map((hobby) => (
-                          <ProfileHobbies key={hobby._id} hobbies={hobby} />
-                        ))}
-                      </Fragment>
-                    ) : (
-                      <h6>No hobby to list</h6>
-                    )}
-                  </div>
-                </div>
-
                 <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
                   <div className="mb-4 honeydew">
                     {profile.portfolio.length > 0 ? (
@@ -148,7 +133,20 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                       <h6>No portfolio to list</h6>
                     )}
                   </div>
+                  <div className="mb-4 honeydew">
+                    {profile.hobbies.length > 0 ? (
+                      <Fragment>
+                        <h5 className=" personalInfoHeader">Hobbies</h5>
+                        {profile.hobbies.map((hobby) => (
+                          <ProfileHobbies key={hobby._id} hobbies={hobby} />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No hobby to list</h6>
+                    )}
+                  </div>
                 </div>
+
                 <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
                   <div className="mb-4 honeydew">
                     {profile.reference.length > 0 ? (
