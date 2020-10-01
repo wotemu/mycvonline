@@ -3,6 +3,6 @@ package-lock.json
 
 /config/keys_dev.js
 /config/default.json
-/.env
+.env
 
 debug.log*
