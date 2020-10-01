@@ -22,10 +22,7 @@ nav ul li a:hover {
   color: black;
 }
 
-.container-width {
-  margin-left: 10%;
-  margin-right: 10%;
-}
+
 
 .dashboard,
 .create-profile,
@@ -39,6 +36,11 @@ nav ul li a:hover {
 
 .biobgcolor {
   background-color: #fff;
+}
+
+.register,
+.login {
+  padding: 20px;
 }
 
 .developerProfile {
@@ -59,6 +61,9 @@ nav ul li a:hover {
   background-color: #009688;
   color: #fff;
 }
+
+
+
 
 .myOpacity {
   opacity: 0.6;
@@ -194,7 +199,7 @@ nav ul li a:hover {
 
 .react-responsive-modal-modal {
   width: 600px;
-  background: #b2dbbf;
+  background: white;
   border-radius: 3px;
 }
 
@@ -220,4 +225,8 @@ nav ul li a:hover {
 
 .tellUsAbout {
   color: white;
+}
+
+.pageNotFound {
+  background-color: red;
 }

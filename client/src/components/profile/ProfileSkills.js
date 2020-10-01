@@ -1,42 +1,32 @@
-import React, { Component } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ProfileSkills extends Component {
-  render() {
-    const { skills } = this.props;
-
-    const skillsItems = skills.map((skill) => (
-      <div className="progress m-2 " style={{ height: "25px" }} key={skill._id}>
+const ProfileSkills = ({ skills: { name, level } }) => (
+  <div className="mb-3">
+    <div className="mb-2 biobgcolor">
+      <div className="progress m-2 " style={{ height: '25px' }}>
         <div
           className="progress-bar formHeader"
           role="progressbar"
-          aria-valuenow={skill.level}
+          aria-valuenow={level}
           aria-valuemin="0"
           aria-valuemax="100"
           style={{
-            width: `${skill.level}%`,
+            width: `${level}%`
           }}
         >
           <p className="text-center text-lead m-2">
-            {" "}
-            {skill.name} {`${skill.level}%`}
+            {' '}
+            {name} {`${level}%`}
           </p>
         </div>
       </div>
-    ));
+    </div>
+  </div>
+);
 
-    return (
-      <div className="mb-3">
-        <div className="mb-2 biobgcolor">
-          <h5 className="myOpacity personalInfoHeader">Skills</h5>
-          {skillsItems.length > 0 ? (
-            <div className=" ">{skillsItems}</div>
-          ) : (
-            <p>No Skills listed</p>
-          )}
-        </div>
-      </div>
-    );
-  }
-}
+ProfileSkills.propTypes = {
+  skills: PropTypes.object.isRequired
+};
 
 export default ProfileSkills;

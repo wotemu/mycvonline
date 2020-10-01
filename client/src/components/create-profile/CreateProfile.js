@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import InputGroup from "../common/InputGroup";
-import SelectListGroup from "../common/SelectListGroup";
-import { createProfile } from "../../actions/profileActions";
-import { options } from "./Options";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import InputGroup from '../common/InputGroup';
+import SelectListGroup from '../common/SelectListGroup';
+import { createProfile } from '../../actions/profileActions';
+import { options } from './Options';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -18,44 +18,34 @@ class CreateProfile extends Component {
       pagetwo: false,
       pagethree: false,
       displaySocialInputs: false,
-      handle: "",
-      address: "",
-      email: "",
-      phone: "",
-      language: "",
-      website: "",
-      linkedin: "",
-      github: "",
-      company: "",
-      status: "",
-      bio: "",
-      image: "",
-      twitter: "",
-      facebook: "",
-      youtube: "",
-      instagram: "",
-      errors: {},
+      address: '',
+      email: '',
+      phone: '',
+      language: '',
+      website: '',
+      linkedin: '',
+      github: '',
+      company: '',
+      status: '',
+      bio: '',
+      image: '',
+      twitter: '',
+      facebook: '',
+      youtube: '',
+      instagram: ''
     };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({
-        errors: this.props.errors,
-      });
-    }
   }
 
   prevPage = () => {
     if (this.state.pagetwo === true) {
       this.setState({
         pageone: !this.state.pageone,
-        pagetwo: !this.state.pagetwo,
+        pagetwo: !this.state.pagetwo
       });
     } else if (this.state.pagethree === true) {
       this.setState({
         pagethree: !this.state.pagethree,
-        pagetwo: !this.state.pagetwo,
+        pagetwo: !this.state.pagetwo
       });
     }
   };
@@ -64,12 +54,12 @@ class CreateProfile extends Component {
     if (this.state.pageone === true) {
       this.setState({
         pageone: !this.state.pageone,
-        pagetwo: !this.state.pagetwo,
+        pagetwo: !this.state.pagetwo
       });
     } else if (this.state.pagetwo === true) {
       this.setState({
         pagetwo: !this.state.pagetwo,
-        pagethree: !this.state.three,
+        pagethree: !this.state.three
       });
     }
   };
@@ -77,7 +67,7 @@ class CreateProfile extends Component {
   togglePage = () => {
     this.setState({
       pageone: !this.state.pageone,
-      pagetwo: !this.state.pagetwo,
+      pagetwo: !this.state.pagetwo
     });
   };
 
@@ -85,22 +75,22 @@ class CreateProfile extends Component {
     e.preventDefault();
 
     let formData = new FormData();
-    formData.append("handle", this.state.handle);
-    formData.append("address", this.state.address);
-    formData.append("email", this.state.email);
-    formData.append("phone", this.state.phone);
-    formData.append("status", this.state.status);
-    formData.append("language", this.state.language);
-    formData.append("website", this.state.website);
-    formData.append("linkedin", this.state.linkedin);
-    formData.append("github", this.state.github);
-    formData.append("company", this.state.company);
-    formData.append("bio", this.state.bio);
-    formData.append("image", this.state.image);
-    formData.append("twitter", this.state.twitter);
-    formData.append("facebook", this.state.facebook);
-    formData.append("youtube", this.state.youtube);
-    formData.append("instagram", this.state.instagram);
+
+    formData.append('address', this.state.address);
+    formData.append('email', this.state.email);
+    formData.append('phone', this.state.phone);
+    formData.append('status', this.state.status);
+    formData.append('language', this.state.language);
+    formData.append('website', this.state.website);
+    formData.append('linkedin', this.state.linkedin);
+    formData.append('github', this.state.github);
+    formData.append('company', this.state.company);
+    formData.append('bio', this.state.bio);
+    formData.append('image', this.state.image);
+    formData.append('twitter', this.state.twitter);
+    formData.append('facebook', this.state.facebook);
+    formData.append('youtube', this.state.youtube);
+    formData.append('instagram', this.state.instagram);
 
     this.props.createProfile(formData, this.props.history);
   };
@@ -115,9 +105,7 @@ class CreateProfile extends Component {
 
   render() {
     const {
-      errors,
       displaySocialInputs,
-      handle,
       address,
       email,
       phone,
@@ -133,52 +121,8 @@ class CreateProfile extends Component {
       instagram,
       pagethree,
       pageone,
-      pagetwo,
+      pagetwo
     } = this.state;
-
-    let socialInputs;
-
-    if (displaySocialInputs) {
-      socialInputs = (
-        <div className="pl-3 pr-3">
-          <InputGroup
-            placeholder="Twitter Profile URL"
-            name="twitter"
-            icon="fab fa-twitter"
-            value={twitter}
-            onChange={this.onChange}
-            error={errors.twitter}
-          />
-
-          <InputGroup
-            placeholder="Facebook Page URL"
-            name="facebook"
-            icon="fab fa-facebook"
-            value={facebook}
-            onChange={this.onChange}
-            error={errors.facebook}
-          />
-
-          <InputGroup
-            placeholder="YouTube Channel URL"
-            name="youtube"
-            icon="fab fa-youtube"
-            value={youtube}
-            onChange={this.onChange}
-            error={errors.youtube}
-          />
-
-          <InputGroup
-            placeholder="Instagram Page URL"
-            name="instagram"
-            icon="fab fa-instagram"
-            value={instagram}
-            onChange={this.onChange}
-            error={errors.instagram}
-          />
-        </div>
-      );
-    }
 
     return (
       <div className="container">
@@ -196,19 +140,10 @@ class CreateProfile extends Component {
                         </h5>
                         <div className="card-body">
                           <TextFieldGroup
-                            placeholder="* Profile Handle"
-                            name="handle"
-                            value={handle}
-                            onChange={this.onChange}
-                            error={errors.handle}
-                            info="A unique handle for your profile URL. Your name, nickname"
-                          />
-                          <TextFieldGroup
                             placeholder="Your address"
                             name="address"
                             value={address}
                             onChange={this.onChange}
-                            error={errors.address}
                             info="Write your address here"
                           />
                           <TextFieldGroup
@@ -216,7 +151,6 @@ class CreateProfile extends Component {
                             name="email"
                             value={email}
                             onChange={this.onChange}
-                            error={errors.email}
                             info="Write your email here"
                           />
                           <TextFieldGroup
@@ -224,7 +158,6 @@ class CreateProfile extends Component {
                             name="phone"
                             value={phone}
                             onChange={this.onChange}
-                            error={errors.phone}
                             info="Write your phone number here"
                           />
                         </div>
@@ -244,7 +177,6 @@ class CreateProfile extends Component {
                           name="language"
                           value={language}
                           onChange={this.onChange}
-                          error={errors.language}
                           info="Write the list of languages you speak(comma separated)"
                         />
                       </div>
@@ -254,7 +186,6 @@ class CreateProfile extends Component {
                         value={status}
                         onChange={this.onChange}
                         options={options}
-                        error={errors.status}
                         info="Give us an idea of where you are at in your career"
                       />
                       <TextAreaFieldGroup
@@ -262,7 +193,6 @@ class CreateProfile extends Component {
                         name="bio"
                         value={bio}
                         onChange={this.onChange}
-                        error={errors.bio}
                         info="Tell us a little about yourself"
                       />
                     </div>
@@ -289,7 +219,6 @@ class CreateProfile extends Component {
                         icon="fas fa-globe"
                         value={website}
                         onChange={this.onChange}
-                        error={errors.website}
                         info="Could be your own website"
                         className="form-control input-sm"
                       />
@@ -300,7 +229,6 @@ class CreateProfile extends Component {
                         icon="fab fa-linkedin"
                         value={linkedin}
                         onChange={this.onChange}
-                        error={errors.linkedin}
                       />
 
                       <InputGroup
@@ -309,7 +237,6 @@ class CreateProfile extends Component {
                         icon="fab fa-github"
                         value={github}
                         onChange={this.onChange}
-                        error={errors.github}
                       />
                     </div>
 
@@ -318,7 +245,7 @@ class CreateProfile extends Component {
                         type="button"
                         onClick={() => {
                           this.setState((prevState) => ({
-                            displaySocialInputs: !prevState.displaySocialInputs,
+                            displaySocialInputs: !prevState.displaySocialInputs
                           }));
                         }}
                         className="btn btn-sm  formHeader"
@@ -327,7 +254,41 @@ class CreateProfile extends Component {
                       </button>
                       <span className="text-muted pl-2">Optional</span>
                     </div>
-                    {socialInputs}
+                    {displaySocialInputs && (
+                      <div className="pl-3 pr-3">
+                        <InputGroup
+                          placeholder="Twitter Profile URL"
+                          name="twitter"
+                          icon="fab fa-twitter"
+                          value={twitter}
+                          onChange={this.onChange}
+                        />
+
+                        <InputGroup
+                          placeholder="Facebook Page URL"
+                          name="facebook"
+                          icon="fab fa-facebook"
+                          value={facebook}
+                          onChange={this.onChange}
+                        />
+
+                        <InputGroup
+                          placeholder="YouTube Channel URL"
+                          name="youtube"
+                          icon="fab fa-youtube"
+                          value={youtube}
+                          onChange={this.onChange}
+                        />
+
+                        <InputGroup
+                          placeholder="Instagram Page URL"
+                          name="instagram"
+                          icon="fab fa-instagram"
+                          value={instagram}
+                          onChange={this.onChange}
+                        />
+                      </div>
+                    )}
                   </div>
                 )}
                 <div className="mt-3 text-center">
@@ -338,7 +299,7 @@ class CreateProfile extends Component {
                     className="btn btn-info  btn-sm"
                   >
                     previous
-                  </button>{" "}
+                  </button>{' '}
                   <button
                     type="submit"
                     onClick={this.nextPage}
@@ -346,7 +307,7 @@ class CreateProfile extends Component {
                     className="btn btn-info  btn-sm"
                   >
                     next
-                  </button>{" "}
+                  </button>{' '}
                   <button
                     type="submit"
                     onClick={this.togglePage}
@@ -367,12 +328,11 @@ class CreateProfile extends Component {
 
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  profile: state.profile,
-  errors: state.errors,
+  profile: state.profile
 });
 
 export default connect(mapStateToProps, { createProfile })(

@@ -1,28 +1,21 @@
-import React, { Component } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ProfileHobbies extends Component {
-  render() {
-    const { hobbies } = this.props;
+const ProfileHobbies = ({ hobbies: { hobby } }) => (
+  <div className=" mb-3 pb-2">
+    <h5 className="myOpacity personalInfoHeader">Hobbies</h5>
 
-    // Hobbies List
-
-    const hobbiesItems = hobbies.map((hobby) => (
-      <div key={hobby._id} className="p-2">
-        <i className="fa fa-check" /> {hobby.hobby}
+    <ul className="list-group">
+      {' '}
+      <div className="p-2">
+        <i className="fa fa-check" /> {hobby}
       </div>
-    ));
+    </ul>
+  </div>
+);
 
-    return (
-      <div className=" mb-3 pb-2">
-        <h5 className="myOpacity personalInfoHeader">Hobbies</h5>
-        {hobbiesItems.length > 0 ? (
-          <ul className="list-group">{hobbiesItems}</ul>
-        ) : (
-          <p>No hobbies Listed </p>
-        )}
-      </div>
-    );
-  }
-}
+ProfileHobbies.propTypes = {
+  hobbies: PropTypes.object.isRequired
+};
 
 export default ProfileHobbies;

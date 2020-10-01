@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { deleteReference } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { deleteReference } from '../../actions/profileActions';
 
 class Reference extends Component {
   onDeleteClick(id) {
@@ -18,9 +18,9 @@ class Reference extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, ref._id)}
-            className="btn btn-danger"
+            className="btn btn-danger btn-sm"
           >
-            Delete
+            <i className="fas fa-times fa-sm"></i>
           </button>
         </td>
       </tr>
@@ -45,7 +45,7 @@ class Reference extends Component {
 }
 
 Reference.propTypes = {
-  deleteReference: PropTypes.func.isRequired,
+  deleteReference: PropTypes.func.isRequired
 };
 
 export default connect(null, { deleteReference })(Reference);

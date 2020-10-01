@@ -1,43 +1,40 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import ProfileHeader from "./ProfileHeader";
-import ProfileAbout from "./ProfileAbout";
-import ProfileCreds from "./ProfileCreds";
-import ProfileReference from "./ProfileReference";
-import ProfilePersonalinfo from "./ProfilePersonalinfo";
-import ProfileHobbies from "./ProfileHobbies";
-import ProfilePortfolio from "./ProfilePortfolio";
-import ProfileSkills from "./ProfileSkills";
-import Spinner from "../common/Spinner";
-import { getProfileByHandle } from "../../actions/profileActions";
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ProfileHeader from './ProfileHeader';
+import ProfileAbout from './ProfileAbout';
 
-class Profile extends Component {
-  componentDidMount() {
-    if (this.props.match.params.handle) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
-    }
-  }
+import ProfileEducation from './ProfileEducation';
+import ProfileExperience from './ProfileExperience';
 
-  componentDidUpdate(prevProps) {
-    if (
-      prevProps.profile.profile === null &&
-      prevProps.profile.loading !== this.props.profile.loading
-    ) {
-      this.props.history.push("/not-found");
-    }
-  }
+import ProfileReference from './ProfileReference';
+import ProfilePersonalinfo from './ProfilePersonalinfo';
+import ProfileHobbies from './ProfileHobbies';
+import ProfilePortfolio from './ProfilePortfolio';
+import ProfileSkills from './ProfileSkills';
+import Spinner from '../common/Spinner';
+import { getProfileById } from '../../actions/profileActions';
 
-  render() {
-    const { profile, loading } = this.props.profile;
-    let profileContent;
+const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
+  useEffect(() => {
+    getProfileById(match.params.id);
+  }, [getProfileById, match.params.id]);
 
-    if (profile === null || loading) {
-      profileContent = <Spinner />;
-    } else {
-      profileContent = (
-        <div>
+  return (
+    <Fragment>
+      {profile === null ? (
+        <Spinner />
+      ) : (
+        <Fragment>
+          <div className="row">
+            <div className="col-lg-2 mb-2">
+              <Link to="/profiles" className="btn btn-light">
+                <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+              </Link>
+            </div>
+          </div>
+
           <div className="row mb-3">
             <div className="card card-body  border-0">
               <div className="row">
@@ -55,37 +52,111 @@ class Profile extends Component {
             <div className="card card-body  border-0">
               <div className="row">
                 <div className="col-lg-5 ">
-                  <ProfileSkills skills={profile.skills} />
-                  <ProfilePortfolio portfolio={profile.portfolio} />
-                  <ProfileHobbies hobbies={profile.hobbies} />
-                  <ProfileReference reference={profile.reference} />
+                  <div className="mb-2">
+                    {profile.skills.length > 0 ? (
+                      <Fragment>
+                        <h5 className="myOpacity personalInfoHeader">
+                          Skills Set
+                        </h5>
+                        {profile.skills.map((skill) => (
+                          <ProfileSkills key={skill._id} skills={skill} />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No skill to list</h6>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    {profile.portfolio.length > 0 ? (
+                      <Fragment>
+                        {profile.portfolio.map((portfolio) => (
+                          <ProfilePortfolio
+                            key={portfolio._id}
+                            portfolio={portfolio}
+                          />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No portfolio to list</h6>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    {profile.hobbies.length > 0 ? (
+                      <Fragment>
+                        {profile.hobbies.map((hobby) => (
+                          <ProfileHobbies key={hobby._id} hobbies={hobby} />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No hobby to list</h6>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    {profile.reference.length > 0 ? (
+                      <Fragment>
+                        {profile.reference.map((reference) => (
+                          <ProfileReference
+                            key={reference._id}
+                            reference={reference}
+                          />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No reference to list</h6>
+                    )}
+                  </div>
                 </div>
                 <div className="col-lg-7">
-                  <ProfileCreds
-                    education={profile.education}
-                    experience={profile.experience}
-                  />
+                  <div className="mb-2">
+                    {profile.experience.length > 0 ? (
+                      <Fragment>
+                        {profile.experience.map((experience) => (
+                          <ProfileExperience
+                            key={experience._id}
+                            experience={experience}
+                          />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No experience to list</h6>
+                    )}
+                  </div>
+                  <div className="mb-2">
+                    {profile.education.length > 0 ? (
+                      <Fragment>
+                        <h5 className="myOpacity personalInfoHeader">
+                          Qualifications
+                        </h5>
+                        {profile.education.map((education) => (
+                          <ProfileEducation
+                            key={education._id}
+                            education={education}
+                          />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No education to list</h6>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      );
-    }
-
-    return <div className="profile">{profileContent}</div>;
-  }
-}
+        </Fragment>
+      )}
+    </Fragment>
+  );
+};
 
 Profile.propTypes = {
-  getProfileByHandle: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { getProfileByHandle })(
-  withRouter(Profile)
-);
+export default connect(mapStateToProps, { getProfileById })(Profile);

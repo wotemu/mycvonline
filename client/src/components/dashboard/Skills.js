@@ -1,50 +1,45 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { deleteSkills } from "../../actions/profileActions";
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { deleteSkills } from '../../actions/profileActions';
 
-class Skills extends Component {
-  onDeleteClick(id) {
-    this.props.deleteSkills(id);
-  }
+const Skills = ({ skills, deleteSkills }) => {
+  const profileSkill = skills.map((skill) => (
+    <tr key={skill._id}>
+      <td>{skill.name}</td>
+      <td>{skill.level}</td>
 
-  render() {
-    const skills = this.props.skills.map((ref) => (
-      <tr key={ref._id}>
-        <td>{ref.name}</td>
-        <td>{ref.level}</td>
+      <td>
+        <button
+          onClick={() => deleteSkills(skill._id)}
+          className="btn btn-danger btn-sm"
+        >
+          <i className="fas fa-times fa-sm"></i>
+        </button>
+      </td>
+    </tr>
+  ));
+  return (
+    <div>
+      <h5 className="text-info mb-2">Skills</h5>
+      <table className="table table-responsive table-sm">
+        <thead className="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Level</th>
 
-        <td>
-          <button
-            onClick={this.onDeleteClick.bind(this, ref._id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ));
-    return (
-      <div>
-        <h5 className="text-info mb-2">Skills</h5>
-        <table className="table table-responsive table-sm">
-          <thead className="thead-dark">
-            <tr>
-              <th>Name</th>
-              <th>Level</th>
-
-              <th />
-            </tr>
-            {skills}
-          </thead>
-        </table>
-      </div>
-    );
-  }
-}
+            <th />
+          </tr>
+          {profileSkill}
+        </thead>
+      </table>
+    </div>
+  );
+};
 
 Skills.propTypes = {
   deleteSkills: PropTypes.func.isRequired,
+  skills: PropTypes.array.isRequired
 };
 
 export default connect(null, { deleteSkills })(Skills);

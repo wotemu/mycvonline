@@ -1,166 +1,124 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { addEducation } from "../../actions/profileActions";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addEducation } from '../../actions/profileActions';
 
-class AddEducation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      school: "",
-      degree: "",
-      fieldofstudy: "",
-      from: "",
-      to: "",
-      current: false,
-      description: "",
-      errors: {},
-      disabled: false,
-    };
+const AddEducation = ({ addEducation, history }) => {
+  const [formData, setFormData] = useState({
+    school: '',
+    degree: '',
+    fieldofstudy: '',
+    from: '',
+    to: '',
+    current: false,
+    description: ''
+  });
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({
-        errors: this.props.errors,
-      });
-    }
-  }
+  const {
+    school,
+    degree,
+    fieldofstudy,
+    from,
+    to,
+    description,
+    current
+  } = formData;
 
-  onSubmit(e) {
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    const eduData = {
-      school: this.state.school,
-      degree: this.state.degree,
-      fieldofstudy: this.state.fieldofstudy,
-      from: this.state.from,
-      to: this.state.to,
-      current: this.state.current,
-      description: this.state.description,
-    };
+    addEducation(formData, history);
+  };
 
-    this.props.addEducation(eduData, this.props.history);
-  }
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-8 col-md-10 col-sm-12 m-auto">
+          <Link to="/dashboard" className="btn btn-light">
+            <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+          </Link>
+          <div className=" p-5 add-education">
+            <h5 className="formHeader p-2">Add Education</h5>
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+            <small className="d-block pb-3">* = required fields</small>
+            <form onSubmit={onSubmit}>
+              <TextFieldGroup
+                placeholder="* School"
+                name="school"
+                value={school}
+                onChange={onChange}
+              />
+              <TextFieldGroup
+                placeholder="* Degree or Certification"
+                name="degree"
+                value={degree}
+                onChange={onChange}
+              />
+              <TextFieldGroup
+                placeholder="* Field of Study"
+                name="fieldofstudy"
+                value={fieldofstudy}
+                onChange={onChange}
+              />
+              <h6>From Date</h6>
+              <TextFieldGroup
+                name="from"
+                type="date"
+                value={from}
+                onChange={onChange}
+              />
 
-  onCheck(e) {
-    this.setState({
-      disabled: !this.state.disabled,
-      current: !this.state.current,
-    });
-  }
-
-  render() {
-    const { errors } = this.state;
-
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-8 col-md-10 col-sm-12 m-auto">
-            <Link to="/dashboard" className="btn btn-light">
-              <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
-            </Link>
-            <div className=" p-5 add-education">
-              <h5 className="formHeader p-2">Add Education</h5>
-
-              <small className="d-block pb-3">* = required fields</small>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* School"
-                  name="school"
-                  value={this.state.school}
-                  onChange={this.onChange}
-                  error={errors.school}
-                />
-                <TextFieldGroup
-                  placeholder="* Degree or Certification"
-                  name="degree"
-                  value={this.state.degree}
-                  onChange={this.onChange}
-                  error={errors.degree}
-                />
-                <TextFieldGroup
-                  placeholder="* Field of Study"
-                  name="fieldofstudy"
-                  value={this.state.fieldofstudy}
-                  onChange={this.onChange}
-                  error={errors.fieldofstudy}
-                />
-                <h6>From Date</h6>
-                <TextFieldGroup
-                  name="from"
-                  type="date"
-                  value={this.state.from}
-                  onChange={this.onChange}
-                  error={errors.from}
-                />
-
-                <h6>To Date</h6>
-                <TextFieldGroup
-                  name="to"
-                  type="date"
-                  value={this.state.to}
-                  onChange={this.onChange}
-                  error={errors.to}
-                  disabled={this.state.disabled ? "disabled" : ""}
-                />
-                <div className="form-check mb-4">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="current"
-                    value={this.state.current}
-                    checked={this.state.current}
-                    onChange={this.onCheck}
-                    id="current"
-                  />
-                  <label htmlFor="current" className="form-check-label">
-                    Current Job
-                  </label>
-                </div>
-                <TextAreaFieldGroup
-                  placeholder="Program Description"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.onChange}
-                  error={errors.description}
-                  info="Tell us about the program that you were in"
-                />
+              <h6>To Date</h6>
+              <TextFieldGroup
+                name="to"
+                type="date"
+                value={to}
+                onChange={onChange}
+              />
+              <div className="form-check mb-4">
                 <input
-                  type="submit"
-                  value="Submit"
-                  className="btn bg-dark text-white btn-block mt-4"
+                  type="checkbox"
+                  className="form-check-input"
+                  name="current"
+                  value={current}
+                  checked={current}
+                  id="current"
+                  onChange={() =>
+                    setFormData({ ...formData, current: !current })
+                  }
                 />
-              </form>
-            </div>
+                <label htmlFor="current" className="form-check-label">
+                  Current School
+                </label>
+              </div>
+              <TextAreaFieldGroup
+                placeholder="Program Description"
+                name="description"
+                value={description}
+                onChange={onChange}
+                info="Tell us about the program that you were in"
+              />
+              <input
+                type="submit"
+                value="Submit"
+                className="btn bg-dark text-white btn-block mt-4"
+              />
+            </form>
           </div>
         </div>
       </div>
-    );
-  }
-}
-
-AddEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  errors: state.errors,
-});
+AddEducation.propTypes = {
+  addEducation: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps, { addEducation })(
-  withRouter(AddEducation)
-);
+export default connect(null, { addEducation })(AddEducation);

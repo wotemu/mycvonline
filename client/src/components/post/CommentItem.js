@@ -1,59 +1,59 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { deleteComment } from "../../actions/postActions";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
+import { deleteComment } from '../../actions/postActions';
 
-class CommentItem extends Component {
-  onDeleteClick(postId, commentId) {
-    this.props.deleteComment(postId, commentId);
-  }
+import AvatarImage from '../../img/avatar.jpg';
 
-  render() {
-    const { comment, postId, auth } = this.props;
-
-    return (
-      <div className="card card-body mb-1 pb-1">
-        <div className="row">
-          <div className="col-md-3">
-            <a href="profile.html">
-              <img
-                className="avatar rounded-circle d-none d-md-block"
-                src={comment.avatar}
-                alt=""
-              />
-            </a>
-
-            <p className="paraHeight">{comment.name}</p>
-          </div>
-          <div className="col-md-8">
-            <p className="lead">{comment.text}</p>
-          </div>
-          <div className="col-md-1">
-            {comment.user === auth.user.id ? (
-              <button
-                onClick={this.onDeleteClick.bind(this, postId, comment._id)}
-                type="button"
-                className="btn btn-danger btn-sm mr-1"
-              >
-                <i className="fas fa-times" />
-              </button>
-            ) : null}
-          </div>
-        </div>
+const CommentItem = ({
+  postId,
+  comment: { _id, text, name, user, date },
+  auth,
+  deleteComment
+}) => (
+  <div className="card card-body mb-1 pb-1">
+    <div className="row">
+      <div className="col-md-3">
+        <Link to={`/profile/${user}`}>
+          <img className="avatar rounded-circle" src={AvatarImage} alt="" />
+          <p>{name}</p>
+        </Link>
       </div>
-    );
-  }
-}
+      <div className="col-md-7">
+        <p className="">{text}</p>
+      </div>
+      <div className="col-md-2">
+        <p className="text-muted">
+          {' '}
+          On <Moment format="MMM DD, YYYY">{date}</Moment>
+        </p>
+        <p>
+          {!auth.loading && user === auth.user._id && (
+            <button
+              onClick={() => deleteComment(postId, _id)}
+              type="button"
+              className="btn btn-danger btn-sm"
+            >
+              <i className="fas fa-times fa-sm"></i>
+            </button>
+          )}{' '}
+        </p>
+      </div>
+    </div>
+  </div>
+);
 
 CommentItem.propTypes = {
-  deleteComment: PropTypes.func.isRequired,
-  comment: PropTypes.object.isRequired,
   postId: PropTypes.string.isRequired,
+  comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  deleteComment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { deleteComment })(CommentItem);

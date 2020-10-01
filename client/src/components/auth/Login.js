@@ -1,105 +1,79 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { login } from '../../actions/authActions';
 
-class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      errors: {},
-    };
+import { connect } from 'react-redux';
+import TextFieldGroup from '../common/TextFieldGroup';
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+const Login = ({ login, isAuthenticated }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.auth.isAuthenticated !== this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
-    }
+  const { email, password } = formData;
 
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({
-        errors: this.props.errors,
-      });
-    }
-  }
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  onSubmit(e) {
+  const onSubmit = (e) => {
     e.preventDefault();
+    login(email, password);
+  };
 
-    const userData = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-
-    this.props.loginUser(userData);
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  } else {
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  return (
+    <div className="container ">
+      <div className="row ">
+        <div
+          className="col-md-6 m-auto loginForm  p-3"
+          style={{ borderRadius: '5px' }}
+        >
+          <h2 className="myOpacity text-center">Log In</h2>
+          <h5 className="myOpacity text-center pb-4">
+            Sign in to your account
+          </h5>
+          <form onSubmit={onSubmit} className="p-3">
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={email}
+              onChange={onChange}
+              required
+            />
 
-  render() {
-    const { errors } = this.state;
-
-    return (
-      <div className="container ">
-        <div className="row login">
-          <div
-            className="col-md-6 m-auto loginForm  p-3"
-            style={{ borderRadius: "5px" }}
-          >
-            <h2 className="myOpacity text-center">Log In</h2>
-            <h5 className="myOpacity text-center pb-4">
-              Sign in to your account
-            </h5>
-            <form onSubmit={this.onSubmit} className="p-3">
-              <TextFieldGroup
-                placeholder="Email Address"
-                name="email"
-                type="email"
-                value={this.state.email}
-                onChange={this.onChange}
-                error={errors.email}
-              />
-
-              <TextFieldGroup
-                placeholder="Password"
-                name="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.onChange}
-                error={errors.password}
-              />
-              <input type="submit" className="btn btn-info btn-block mt-4" />
-            </form>
-          </div>
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={onChange}
+              minLength="6"
+            />
+            <input type="submit" className="btn formHeader btn-block" />
+            <p className="my-1">
+              Don't have an account? <Link to="/register">Sign Up</Link>
+            </p>
+          </form>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
-  errors: state.errors,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { loginUser })(withRouter(Login));
+export default connect(mapStateToProps, { login })(Login);

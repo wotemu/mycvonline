@@ -1,128 +1,249 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const mongoose = require("mongoose");
-const passport = require("passport");
-const multer = require("multer");
-const cloudinary = require("../../config/cloudinary");
+const upload = require('../../uploader');
+const cloudinary = require('../../config/cloudinary');
 
-// Post model
-const Blog = require("../../models/Blog");
-// Profile model
-const Profile = require("../../models/Profile");
+const auth = require('../../middleware/auth');
+const { check, validationResult } = require('express-validator');
 
-// Validation
-const validateBlogInput = require("../../validation/blog");
+const checkObjectId = require('../../middleware/checkObjectId');
 
-//IMAGE UPLOAD CONFIGURATION
-const storage = multer.diskStorage({
-  filename: function (req, file, callback) {
-    callback(null, Date.now() + file.originalname);
-  },
-});
-const imageFilter = function (req, file, cb) {
-  // accept image files only
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
-    return cb(new Error("Only image files are accepted!"), false);
-  }
-  cb(null, true);
-};
+//models
+const User = require('../../models/User');
+const Blog = require('../../models/Blog');
 
-const upload = multer({ storage: storage, fileFilter: imageFilter });
+// @route    Blog api/blogs
+// @desc     Create a blog
+// @access   Private
 
-// @route   GET api/posts/test
-// @desc    Tests post route
-// @access  Public
-router.get("/test", (req, res) => res.json({ msg: "Blogs Works" }));
-
-// @route   GET api/blogs
-// @desc    Get blogs
-// @access  Public
-router.get("/", (req, res) => {
-  Blog.find()
-    .sort({ date: -1 })
-    .then((blogs) => res.json(blogs))
-    .catch((err) => res.status(404).json({ nopostsfound: "No blogs found" }));
-});
-
-// @route   GET api/blogs/:id
-// @desc    Get blog by id
-// @access  Public
-router.get("/:id", (req, res) => {
-  Blog.findById(req.params.id)
-    .then((blog) => res.json(blog))
-    .catch((err) =>
-      res.status(404).json({ nopostfound: "No blog found with that ID" })
-    );
-});
-
-// @route   POST api/blogs
-// @desc    Create blog
-// @access  Private
 router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("image"),
-  (req, res) => {
-    const { errors, isValid } = validateBlogInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // If any errors, send 400 with errors object
-      return res.status(400).json(errors);
+  '/',
+  [
+    auth
+    /*  [
+      check('text', 'Text field is required').not().isEmpty(),
+      check('title', 'Please include a title to the blog').not().isEmpty(),
+      check('image', 'Please upload an image').not().isEmpty()
+    ] */
+  ],
+  upload.single('image'),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
 
-    cloudinary.v2.uploader.upload(req.file.path, function (err, result) {
-      if (err) {
-        req.json(err.message);
+    let blogImage = await cloudinary.v2.uploader.upload(
+      req.file.path,
+      (err, result) => {
+        if (err) {
+          req.json(err.message);
+        }
+
+        return result;
       }
+    );
+    req.body.image = blogImage.secure_url;
 
-      req.body.image = result.secure_url;
-      // add image's public_id to image object
-      req.body.imageId = result.public_id;
+    try {
+      const user = await User.findById(req.user.id).select('-password');
 
-      image = req.body.image;
-      imageId = req.body.imageId;
-
-      const newBlog = new Blog({
-        title: req.body.title,
+      const newPost = new Blog({
         text: req.body.text,
+        title: req.body.title,
         image: req.body.image,
-        imageId: req.body.imageId,
-        name: req.body.name,
-        avatar: req.body.avatar,
-        user: req.user.id,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
       });
 
-      newBlog.save().then((blog) => res.json(blog));
-    });
+      const blog = await newPost.save();
+
+      res.json(blog);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
 );
 
-// @route   DELETE api/blogs/:id
-// @desc    Delete blog
-// @access  Private
-router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id }).then((profile) => {
-      Blog.findById(req.params.id)
-        .then((blog) => {
-          // Check for blog owner
-          if (blog.user.toString() !== req.user.id) {
-            return res
-              .status(401)
-              .json({ notauthorized: "User not authorized" });
-          }
+// @route    GET api/blogs
+// @desc     Get all blogss
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const blogs = await Blog.find().sort({ date: -1 });
+    res.json(blogs);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
-          // Delete
-          blog.remove().then(() => res.json({ success: true }));
-        })
-        .catch((err) =>
-          res.status(404).json({ postnotfound: "No blog found" })
-        );
-    });
+// @route    GET api/blogs/:id
+// @desc     Get blog by ID
+// @access   Private
+router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+      return res.status(404).json({ msg: 'Blog not found' });
+    }
+
+    res.json(blog);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    DELETE api/blogs/:id
+// @desc     Delete a blog
+// @access   Private
+router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+      return res.status(404).json({ msg: 'Blog not found' });
+    }
+
+    // Check user
+    if (blog.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await blog.remove();
+
+    res.json({ msg: 'Blog removed' });
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    PUT api/blogs/like/:id
+// @desc     Like a blog
+// @access   Private
+router.put('/like/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    // Check if the blog has already been liked
+    if (blog.likes.some((like) => like.user.toString() === req.user.id)) {
+      return res.status(400).json({ msg: 'Blog already liked' });
+    }
+
+    blog.likes.unshift({ user: req.user.id });
+
+    await blog.save();
+
+    return res.json(blog.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    PUT api/blogs/unlike/:id
+// @desc     Unlike a blog
+// @access   Private
+router.put('/unlike/:id', [auth, checkObjectId('id')], async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    // Check if the blog has not yet been liked
+    if (!blog.likes.some((like) => like.user.toString() === req.user.id)) {
+      return res.status(400).json({ msg: 'blog has not yet been liked' });
+    }
+
+    // remove the like
+    blog.likes = Blog.likes.filter(
+      ({ user }) => user.toString() !== req.user.id
+    );
+
+    await blog.save();
+
+    return res.json(blog.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route    blog api/blogs/comment/:id
+// @desc     Comment on a blog
+// @access   Private
+router.post(
+  '/comment/:id',
+  [
+    auth,
+    checkObjectId('id'),
+    [check('text', 'Text is required').not().isEmpty()]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+      const blog = await Blog.findById(req.params.id);
+
+      const newComment = {
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
+      };
+
+      blog.comments.unshift(newComment);
+
+      await blog.save();
+
+      res.json(blog.comments);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   }
 );
+
+// @route    DELETE api/blogs/comment/:id/:comment_id
+// @desc     Delete comment
+// @access   Private
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    // Pull out comment
+    const comment = blog.comments.find(
+      (comment) => comment.id === req.params.comment_id
+    );
+    // Make sure comment exists
+    if (!comment) {
+      return res.status(404).json({ msg: 'Comment does not exist' });
+    }
+    // Check user
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    blog.comments = blog.comments.filter(
+      ({ id }) => id !== req.params.comment_id
+    );
+
+    await blog.save();
+
+    return res.json(blog.comments);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;

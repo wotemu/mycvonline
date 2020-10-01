@@ -1,33 +1,21 @@
-import React, { Component } from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class ProfileReference extends Component {
-  render() {
-    const { reference } = this.props;
+const ProfileReference = ({ reference: { name, email, position } }) => (
+  <div className=" mb-3 pb-2">
+    <h5 className="myOpacity personalInfoHeader">References</h5>
+    <p className="myOpacity">
+      {name}, {position}
+    </p>
+    <p>
+      <i className="fas fa-envelope iconImgBgc mr-2"></i>
+      {email}
+    </p>
+  </div>
+);
 
-    const refItems = reference.map((ref) => (
-      <li key={ref._id} className="list-group-item border-0">
-        <p className="myOpacity">
-          {ref.name}, {ref.position}
-        </p>
-        <p>
-          <i className="fas fa-envelope iconImgBgc mr-2"></i>
-          {ref.email}
-        </p>
-        <hr />
-      </li>
-    ));
-
-    return (
-      <div className=" mb-3 pb-2">
-        <h5 className="myOpacity personalInfoHeader">References</h5>
-        {refItems.length > 0 ? (
-          <ul className="list-group border-0">{refItems}</ul>
-        ) : (
-          <p>No Reference Listed </p>
-        )}
-      </div>
-    );
-  }
-}
+ProfileReference.propTypes = {
+  reference: PropTypes.object.isRequired
+};
 
 export default ProfileReference;

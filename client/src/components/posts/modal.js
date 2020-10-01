@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
-import PostForm from "./PostForm";
+import React, { Component } from 'react';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import PostForm from './PostForm';
 
 class ModalBox extends Component {
   state = {
-    open: false,
+    open: false
   };
 
   onOpenModal = () => {
@@ -31,9 +31,12 @@ class ModalBox extends Component {
             open={open}
             onClose={this.onCloseModal}
             center
-            animationDuration={1000}
+            animationDuration={200}
           >
-            <h4 className="myOpacity">What is in your mind...</h4> <hr />
+            <h5 className="p-1 mr-4 formHeader text-white">
+              What is on your mind...
+            </h5>
+            <hr />
             <PostForm />
           </Modal>
         </div>

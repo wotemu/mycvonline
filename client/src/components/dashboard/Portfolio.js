@@ -17,10 +17,10 @@ class Portfolio extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, ref._id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
+            className="btn btn-danger btn-sm"
+        >
+        <i className="fas fa-times fa-sm"></i>
+        </button>
         </td>
       </tr>
     ));
