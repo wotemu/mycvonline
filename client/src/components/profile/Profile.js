@@ -38,10 +38,10 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className="row mb-3">
             <div className="card card-body  border-0">
               <div className="row">
-                <div className="col-lg-5 ">
+                <div className="col-lg-4 col-md-4 col-sm-11 ml-auto mr-auto ">
                   <ProfileHeader profile={profile} />
                 </div>
-                <div className="col-lg-7">
+                <div className="col-lg-6 col-md-6 col-sm-11 ml-auto mr-auto">
                   <ProfileAbout profile={profile} />
                   <ProfilePersonalinfo profile={profile} />
                 </div>
@@ -51,13 +51,11 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className="row mb-3">
             <div className="card card-body  border-0">
               <div className="row">
-                <div className="col-lg-5 ">
+                <div className="col-lg-4 col-md-4 col-sm-11 ml-auto mr-auto  ">
                   <div className="mb-2">
                     {profile.skills.length > 0 ? (
                       <Fragment>
-                        <h5 className="myOpacity personalInfoHeader">
-                          Skills Set
-                        </h5>
+                        <h5 className=" personalInfoHeader">Skills Set</h5>
                         {profile.skills.map((skill) => (
                           <ProfileSkills key={skill._id} skills={skill} />
                         ))}
@@ -69,6 +67,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                   <div className="mb-2">
                     {profile.portfolio.length > 0 ? (
                       <Fragment>
+                        <h5 className=" personalInfoHeader">Portfolios</h5>
                         {profile.portfolio.map((portfolio) => (
                           <ProfilePortfolio
                             key={portfolio._id}
@@ -83,6 +82,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                   <div className="mb-2">
                     {profile.hobbies.length > 0 ? (
                       <Fragment>
+                        <h5 className=" personalInfoHeader">Hobbies</h5>
                         {profile.hobbies.map((hobby) => (
                           <ProfileHobbies key={hobby._id} hobbies={hobby} />
                         ))}
@@ -94,6 +94,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                   <div className="mb-2">
                     {profile.reference.length > 0 ? (
                       <Fragment>
+                        <h5 className=" personalInfoHeader">References</h5>
                         {profile.reference.map((reference) => (
                           <ProfileReference
                             key={reference._id}
@@ -106,10 +107,11 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                     )}
                   </div>
                 </div>
-                <div className="col-lg-7">
+                <div className="col-lg-6 col-md-6 col-sm-11 ml-auto mr-auto">
                   <div className="mb-2">
                     {profile.experience.length > 0 ? (
                       <Fragment>
+                        <h5 className=" personalInfoHeader">Experiences</h5>
                         {profile.experience.map((experience) => (
                           <ProfileExperience
                             key={experience._id}
@@ -124,9 +126,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                   <div className="mb-2">
                     {profile.education.length > 0 ? (
                       <Fragment>
-                        <h5 className="myOpacity personalInfoHeader">
-                          Qualifications
-                        </h5>
+                        <h5 className=" personalInfoHeader">Qualifications</h5>
                         {profile.education.map((education) => (
                           <ProfileEducation
                             key={education._id}

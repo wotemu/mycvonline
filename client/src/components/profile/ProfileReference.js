@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const ProfileReference = ({ reference: { name, email, position } }) => (
   <div className=" mb-3 pb-2">
-    <h5 className="myOpacity personalInfoHeader">References</h5>
     <p className="myOpacity">
       {name}, {position}
     </p>

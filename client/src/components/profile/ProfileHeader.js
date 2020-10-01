@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import isEmpty from "../../validation/is-empty";
+import React, { Component } from 'react';
+import isEmpty from '../../validation/is-empty';
 
 class ProfileHeader extends Component {
   render() {
@@ -11,7 +11,7 @@ class ProfileHeader extends Component {
           className="img-fluid"
           src={profile.image}
           style={{
-            display: "block",
+            display: 'block'
           }}
           alt=""
         />
@@ -23,11 +23,11 @@ class ProfileHeader extends Component {
           alt=""
           className=" img-fluid rounded-circle p-2"
           style={{
-            maxHeight: "200px",
-            maxWidth: "200px",
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto",
+            maxHeight: '200px',
+            maxWidth: '200px',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto'
           }}
         />
       );

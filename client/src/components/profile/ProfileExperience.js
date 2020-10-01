@@ -7,8 +7,6 @@ const ProfileExperience = ({
 }) => (
   <div>
     <div className="mb-2 ">
-      <h5 className="myOpacity personalInfoHeader">Experiences</h5>
-
       <ul className="list-group ">
         <h5 className="myOpacity">{company}</h5>
         <p className="calanderColor">

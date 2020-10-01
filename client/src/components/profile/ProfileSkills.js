@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const ProfileSkills = ({ skills: { name, level } }) => (
   <div className="mb-3">
-    <div className="mb-2 biobgcolor">
+    <div className="mb-2">
       <div className="progress m-2 " style={{ height: '25px' }}>
         <div
-          className="progress-bar formHeader"
+          className="progress-bar "
           role="progressbar"
           aria-valuenow={level}
           aria-valuemin="0"

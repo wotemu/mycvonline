@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProfileHobbies = ({ hobbies: { hobby } }) => (
-  <div className=" mb-3 pb-2">
-    <h5 className="myOpacity personalInfoHeader">Hobbies</h5>
-
+  <div className=" pb-2">
     <ul className="list-group">
       {' '}
       <div className="p-2">
