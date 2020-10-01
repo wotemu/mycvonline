@@ -12,8 +12,8 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <div className="card card-body bg-light mb-3 mt-3 border-0">
-      <div className="row">
+    <div className="card card-body mb-3 mt-3 border-0 honeydew">
+      <div className="row  ">
         <div className="col-md-6 ">
           <Link to={`/profile/${_id}`}>
             <img

@@ -41,9 +41,15 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                 <div className="col-lg-4 col-md-4 col-sm-11 ml-auto mr-auto ">
                   <ProfileHeader profile={profile} />
                 </div>
-                <div className="col-lg-6 col-md-6 col-sm-11 ml-auto mr-auto">
-                  <ProfileAbout profile={profile} />
-                  <ProfilePersonalinfo profile={profile} />
+                <div className="col-lg-5 col-md-6 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 p-3 honeydew">
+                    {' '}
+                    <ProfileAbout profile={profile} />
+                  </div>
+                  <div className="mb-4 p-3 honeydew">
+                    {' '}
+                    <ProfilePersonalinfo profile={profile} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -51,8 +57,54 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className="row mb-3">
             <div className="card card-body  border-0">
               <div className="row">
-                <div className="col-lg-4 col-md-4 col-sm-11 ml-auto mr-auto  ">
-                  <div className="mb-2">
+                <div className="col-lg-5 col-md-6 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 p-3 honeydew">
+                    <div className="mb-2">
+                      {profile.experience.length > 0 ? (
+                        <Fragment>
+                          <h5 className=" personalInfoHeader">Experiences</h5>
+                          {profile.experience.map((experience) => (
+                            <ProfileExperience
+                              key={experience._id}
+                              experience={experience}
+                            />
+                          ))}
+                        </Fragment>
+                      ) : (
+                        <h6>No experience to list</h6>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-lg-5 col-md-6 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 p-3 honeydew">
+                    <div className="mb-2">
+                      {profile.education.length > 0 ? (
+                        <Fragment>
+                          <h5 className=" personalInfoHeader">
+                            Qualifications
+                          </h5>
+                          {profile.education.map((education) => (
+                            <ProfileEducation
+                              key={education._id}
+                              education={education}
+                            />
+                          ))}
+                        </Fragment>
+                      ) : (
+                        <h6>No education to list</h6>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="card card-body  border-0">
+              <div className="row">
+                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 honeydew">
                     {profile.skills.length > 0 ? (
                       <Fragment>
                         <h5 className=" personalInfoHeader">Skills Set</h5>
@@ -64,7 +116,24 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                       <h6>No skill to list</h6>
                     )}
                   </div>
-                  <div className="mb-2">
+                </div>
+                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 honeydew">
+                    {profile.hobbies.length > 0 ? (
+                      <Fragment>
+                        <h5 className=" personalInfoHeader">Hobbies</h5>
+                        {profile.hobbies.map((hobby) => (
+                          <ProfileHobbies key={hobby._id} hobbies={hobby} />
+                        ))}
+                      </Fragment>
+                    ) : (
+                      <h6>No hobby to list</h6>
+                    )}
+                  </div>
+                </div>
+
+                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 honeydew">
                     {profile.portfolio.length > 0 ? (
                       <Fragment>
                         <h5 className=" personalInfoHeader">Portfolios</h5>
@@ -79,19 +148,9 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                       <h6>No portfolio to list</h6>
                     )}
                   </div>
-                  <div className="mb-2">
-                    {profile.hobbies.length > 0 ? (
-                      <Fragment>
-                        <h5 className=" personalInfoHeader">Hobbies</h5>
-                        {profile.hobbies.map((hobby) => (
-                          <ProfileHobbies key={hobby._id} hobbies={hobby} />
-                        ))}
-                      </Fragment>
-                    ) : (
-                      <h6>No hobby to list</h6>
-                    )}
-                  </div>
-                  <div className="mb-2">
+                </div>
+                <div className="col-lg-3 col-md-4 col-sm-11 ml-auto mr-auto">
+                  <div className="mb-4 honeydew">
                     {profile.reference.length > 0 ? (
                       <Fragment>
                         <h5 className=" personalInfoHeader">References</h5>
@@ -104,38 +163,6 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                       </Fragment>
                     ) : (
                       <h6>No reference to list</h6>
-                    )}
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-11 ml-auto mr-auto">
-                  <div className="mb-2">
-                    {profile.experience.length > 0 ? (
-                      <Fragment>
-                        <h5 className=" personalInfoHeader">Experiences</h5>
-                        {profile.experience.map((experience) => (
-                          <ProfileExperience
-                            key={experience._id}
-                            experience={experience}
-                          />
-                        ))}
-                      </Fragment>
-                    ) : (
-                      <h6>No experience to list</h6>
-                    )}
-                  </div>
-                  <div className="mb-2">
-                    {profile.education.length > 0 ? (
-                      <Fragment>
-                        <h5 className=" personalInfoHeader">Qualifications</h5>
-                        {profile.education.map((education) => (
-                          <ProfileEducation
-                            key={education._id}
-                            education={education}
-                          />
-                        ))}
-                      </Fragment>
-                    ) : (
-                      <h6>No education to list</h6>
                     )}
                   </div>
                 </div>

@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TextFieldGroup from '../common/TextFieldGroup';
+import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addSkills } from '../../actions/profileActions';
 
 const AddSkills = ({ addSkills, history }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    level: ''
+    name: ''
   });
 
-  const { name, level } = formData;
+  const { name } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,19 +32,12 @@ const AddSkills = ({ addSkills, history }) => {
 
             <small className="d-block pb-3">* = required fields</small>
             <form onSubmit={onSubmit}>
-              <TextFieldGroup
+              <TextAreaFieldGroup
                 placeholder="* name"
                 name="name"
                 value={name}
                 onChange={onChange}
-                info="like Java"
-              />
-              <TextFieldGroup
-                placeholder="* Level"
-                name="level"
-                value={level}
-                onChange={onChange}
-                info="A number from 1 to 100"
+                info="Tell us about the skills you own"
               />
               <input
                 type="submit"

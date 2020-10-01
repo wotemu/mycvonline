@@ -399,18 +399,7 @@ router.delete('/reference/:ref_id', auth, async (req, res) => {
 // @access   Private
 router.put(
   '/skills',
-  [
-    auth,
-    [
-      check('name', 'Skill type is required').not().isEmpty(),
-      check('level', 'Please rate your skill from 1 to 100')
-        .not()
-        .isEmpty()
-        .custom((value, { req }) =>
-          req.body.level ? value < 100 && value > 0 : 'Please check the value'
-        )
-    ]
-  ],
+  [auth, [check('name', 'Skill is required field').not().isEmpty()]],
 
   async (req, res) => {
     const errors = validationResult(req);
@@ -418,11 +407,10 @@ router.put(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, level } = req.body;
+    const { name } = req.body;
 
     const newEdu = {
-      name,
-      level
+      name
     };
 
     try {

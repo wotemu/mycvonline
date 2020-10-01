@@ -5,8 +5,8 @@ const ProfileHobbies = ({ hobbies: { hobby } }) => (
   <div className=" pb-2">
     <ul className="list-group">
       {' '}
-      <div className="p-2">
-        <i className="fa fa-check" /> {hobby}
+      <div className="pl-3 pb-1">
+        <i className="fa fa-check pr-2" /> {hobby}
       </div>
     </ul>
   </div>

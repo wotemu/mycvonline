@@ -7,7 +7,6 @@ const Skills = ({ skills, deleteSkills }) => {
   const profileSkill = skills.map((skill) => (
     <tr key={skill._id}>
       <td>{skill.name}</td>
-      <td>{skill.level}</td>
 
       <td>
         <button
@@ -26,7 +25,6 @@ const Skills = ({ skills, deleteSkills }) => {
         <thead className="thead-dark">
           <tr>
             <th>Name</th>
-            <th>Level</th>
 
             <th />
           </tr>

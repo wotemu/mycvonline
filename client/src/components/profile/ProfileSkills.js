@@ -1,27 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProfileSkills = ({ skills: { name, level } }) => (
-  <div className="mb-3">
-    <div className="mb-2">
-      <div className="progress m-2 " style={{ height: '25px' }}>
-        <div
-          className="progress-bar "
-          role="progressbar"
-          aria-valuenow={level}
-          aria-valuemin="0"
-          aria-valuemax="100"
-          style={{
-            width: `${level}%`
-          }}
-        >
-          <p className="text-center text-lead m-2">
-            {' '}
-            {name} {`${level}%`}
-          </p>
-        </div>
-      </div>
-    </div>
+const ProfileSkills = ({ skills: { name } }) => (
+  <div className=" pl-3 pr-3 pb-2">
+    <ul className="list-group">
+      {' '}
+      <li className="p-1 ml-4" style={{ listStyleType: 'square' }}>
+        {' '}
+        {name}
+      </li>
+    </ul>
   </div>
 );
 

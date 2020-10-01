@@ -58,10 +58,6 @@ const ProfileSchema = new Schema({
       name: {
         type: String,
         required: true
-      },
-      level: {
-        type: String,
-        required: true
       }
     }
   ],
