@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { addBlog } from '../../actions/blogActions';
+import FileUpload from './FileUpload';
 
 class BlogForm extends Component {
   constructor(props) {
     super(props);
-    this.inputRef = React.createRef();
+
     this.state = {
       text: '',
       title: '',
-      image: '',
+      filePath: '',
       errors: {}
     };
   }
@@ -20,23 +21,21 @@ class BlogForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    let formData = new FormData();
-
-    formData.append('text', this.state.text);
-    formData.append('title', this.state.title);
-    formData.append('image', this.state.image);
+    let formData = {
+      title: this.state.title,
+      text: this.state.text,
+      filePath: this.state.filePath
+    };
 
     this.props.addBlog(formData, this.props.history);
-    this.setState({ text: '', title: '' });
-    this.inputRef.current.value = '';
   };
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onChangeImage = (e) => {
-    this.setState({ image: e.target.files[0] });
+  updateImages = (newImages) => {
+    this.setState({ filePath: newImages });
   };
 
   render() {
@@ -56,13 +55,9 @@ class BlogForm extends Component {
                         <h5 className="p-1  formHeader text-white">
                           Upload an Image
                         </h5>
-
-                        <input
-                          type="file"
-                          ref={this.inputRef}
-                          className="form-input p-3"
-                          onChange={this.onChangeImage}
-                        />
+                        <div className="p-2">
+                          <FileUpload refreshFunction={this.updateImages} />
+                        </div>
                       </div>
                     </div>
                     <TextFieldGroup

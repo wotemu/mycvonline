@@ -7,7 +7,7 @@ const BlogSchema = new Schema({
     type: Schema.Types.ObjectId
   },
 
-  image: {
+  filePath: {
     type: String
   },
   title: {

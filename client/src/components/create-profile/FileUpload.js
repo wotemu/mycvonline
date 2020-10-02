@@ -13,7 +13,7 @@ const FileUpload = (props) => {
     formData.append('file', files[0]);
     //save the Image we chose inside the Node Server and cloudinary
 
-    api.post('/posts/image', formData, config).then((res) => {
+    api.post('/profile/image', formData, config).then((res) => {
       if (res.data.success) {
         setFilePath(res.data.filePath);
         props.refreshFunction(res.data.filePath);

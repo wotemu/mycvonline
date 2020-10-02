@@ -82,7 +82,7 @@ export const deletePost = (id) => async (dispatch) => {
 };
 
 // Add post
-export const addPost = (formData, history) => async (dispatch) => {
+export const addPost = (formData) => async (dispatch) => {
   try {
     const res = await api.post('/posts', formData);
 
@@ -92,13 +92,12 @@ export const addPost = (formData, history) => async (dispatch) => {
     });
 
     dispatch(setAlert('Post Created Successfully!', 'success'));
-    history.push('/feed');
   } catch (err) {
-    /* const errors = err.response.data.errors;
+    const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    } */
+    }
 
     dispatch({
       type: POST_ERROR,

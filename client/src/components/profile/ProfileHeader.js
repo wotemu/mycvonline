@@ -5,11 +5,11 @@ class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
     let profileImage;
-    if (profile.image) {
+    if (profile.filePath) {
       profileImage = (
         <img
           className="img-fluid"
-          src={profile.image}
+          src={profile.filePath}
           style={{
             display: 'block'
           }}

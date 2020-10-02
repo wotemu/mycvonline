@@ -37,7 +37,13 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   );
   return (
     <div className="profiles">
-      {' '}
+      <div className="row">
+        <div className="col-12 m-auto">
+          <div className="formHeader myOpacity p-2 mb-2 text-center">
+            <h3>List of Profiles Available</h3>
+          </div>
+        </div>
+      </div>
       <div className="row">{profileItems}</div>
     </div>
   );

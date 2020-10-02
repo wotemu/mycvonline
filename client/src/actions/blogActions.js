@@ -94,11 +94,11 @@ export const addBlog = (formData, history) => async (dispatch) => {
     dispatch(setAlert('Blog Created Successfully', 'success'));
     history.push('/blogs');
   } catch (err) {
-    /*  const errors = err.response.data.errors;
+    const errors = err.response.data.errors;
 
     if (errors) {
       errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    } */
+    }
     dispatch({
       type: BLOG_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }

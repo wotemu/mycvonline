@@ -9,6 +9,7 @@ const initialState = {
   website: '',
   location: '',
   status: '',
+  filePath:'',
 
   github: '',
   bio: '',

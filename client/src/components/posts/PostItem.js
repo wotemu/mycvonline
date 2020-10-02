@@ -15,7 +15,7 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, user, likes, comments, date, image },
+  post: { _id, text, name, user, likes, comments, date, filePath },
   showActions
 }) => {
   const [displayFeeds, setDisplayFeeds] = useState(false);
@@ -44,7 +44,7 @@ const PostItem = ({
       <div className="pt-3 pb-3">
         <ReadMore more={text} />
       </div>
-      <img className="detail-page-video img-fluid" src={image} alt="" />
+      <img className="detail-page-video img-fluid" src={filePath} alt="" />
       <div className="border p-2">
         <p className="text-muted ">
           <span className="pl-2">

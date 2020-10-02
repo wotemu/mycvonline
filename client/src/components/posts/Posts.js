@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostItem from './PostItem';
-import ModalBox from './modal';
 import { getPosts } from '../../actions/postActions';
 import PostForm from './PostForm';
-import FileUploadForm from './fileUploadForm';
 
 const Posts = ({ getPosts, post: { posts } }) => {
   useEffect(() => {
@@ -21,17 +19,14 @@ const Posts = ({ getPosts, post: { posts } }) => {
           <div className="col-lg-8 col-md-10 col-sm-12 m-auto ">
             <div className=" border mb-5 mt-3">
               <div className="card-body">
-                <p className="text-center text-lead">Say something...</p>
                 <input
                   onClick={() => toggleDisplayFeeds(!displayFeeds)}
                   placeholder="Say something..."
                   className="form-control"
-                  type="button"
                 />
 
                 {displayFeeds && <PostForm />}
               </div>
-              <FileUploadForm />
             </div>
             {posts.map((post) => (
               <PostItem key={post._id} post={post} />

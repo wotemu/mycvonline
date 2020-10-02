@@ -18,7 +18,7 @@ const BlogHeader = ({ getBlogs, blog: { blogs } }) => {
         <div className="card p-0 border-0 text-center" key={blog._id}>
           <img
             className="img-fluid"
-            src={blog.image}
+            src={blog.filePath}
             alt="blogImage"
             style={{ width: 'auto', maxHeight: '600px' }}
           />

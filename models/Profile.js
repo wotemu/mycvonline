@@ -7,11 +7,9 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  image: {
+  filePath: {
     type: String
   },
-
-  imageId: { type: String },
 
   address: {
     type: String,

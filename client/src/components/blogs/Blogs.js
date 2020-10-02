@@ -38,7 +38,7 @@ const Blogs = ({ getBlogs, blog: { blogs } }) => {
                       <div className="pb-1">
                         <img
                           className="img-fluid blogsPageImage "
-                          src={blog.image}
+                          src={blog.filePath}
                           alt="blogImage"
                         />
                       </div>

@@ -34,42 +34,48 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+//upload image
+router.post('/image', auth, upload.single('file'), async (req, res) => {
+  try {
+    await cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+      if (err) {
+        req.json(err.message);
+      }
+
+      req.body.filePath = result.secure_url;
+      return res.json({
+        success: true,
+        filePath: req.body.filePath
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // @route    POST api/profile
 // @desc     Create or update user profile
 // @access   Private
 router.post(
   '/',
   [
-    auth
-    /* [
+    auth,
+    [
       check('status', 'Status is required').not().isEmpty(),
       check('address', 'Address is required').not().isEmpty(),
       check('phone', 'Phone is required').not().isEmpty(),
       check('language', 'Language is required').not().isEmpty(),
       check('bio', 'Bio is required').not().isEmpty(),
-      check('image', 'Profile image is required').not().isEmpty(),
+      check('filePath', 'Profile image is required').not().isEmpty(),
       check('email', 'Please include a valid email').isEmail()
-    ] */
+    ]
   ],
-  upload.single('image'),
+
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-    let profileImage = await cloudinary.v2.uploader.upload(
-      req.file.path,
-      (err, result) => {
-        if (err) {
-          req.json(err.message);
-        }
-
-        return result;
-      }
-    );
-    req.body.image = profileImage.secure_url;
-    let image = req.body.image;
 
     const {
       address,
@@ -80,6 +86,7 @@ router.post(
       location,
       website,
       bio,
+      filePath,
       status,
       github,
       youtube,
@@ -95,7 +102,7 @@ router.post(
       email,
       phone,
       language,
-      image,
+      filePath,
       company,
       location,
       linkedin:

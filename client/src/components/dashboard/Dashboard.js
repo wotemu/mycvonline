@@ -31,8 +31,8 @@ const Dashboard = ({
               <div className="p-3">
                 <img
                   src={
-                    profile && profile.image
-                      ? profile && profile.image
+                    profile && profile.filePath
+                      ? profile && profile.filePath
                       : user && user.avatar
                   }
                   alt=""

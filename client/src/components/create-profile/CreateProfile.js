@@ -8,11 +8,12 @@ import InputGroup from '../common/InputGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import { createProfile } from '../../actions/profileActions';
 import { options } from './Options';
+import FileUpload from './FileUpload';
 
 class CreateProfile extends Component {
   constructor(props) {
     super(props);
-    this.inputRef = React.createRef();
+
     this.state = {
       pageone: true,
       pagetwo: false,
@@ -28,7 +29,7 @@ class CreateProfile extends Component {
       company: '',
       status: '',
       bio: '',
-      image: '',
+      filePath: '',
       twitter: '',
       facebook: '',
       youtube: '',
@@ -74,23 +75,23 @@ class CreateProfile extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    let formData = new FormData();
-
-    formData.append('address', this.state.address);
-    formData.append('email', this.state.email);
-    formData.append('phone', this.state.phone);
-    formData.append('status', this.state.status);
-    formData.append('language', this.state.language);
-    formData.append('website', this.state.website);
-    formData.append('linkedin', this.state.linkedin);
-    formData.append('github', this.state.github);
-    formData.append('company', this.state.company);
-    formData.append('bio', this.state.bio);
-    formData.append('image', this.state.image);
-    formData.append('twitter', this.state.twitter);
-    formData.append('facebook', this.state.facebook);
-    formData.append('youtube', this.state.youtube);
-    formData.append('instagram', this.state.instagram);
+    let formData = {
+      address: this.state.address,
+      email: this.state.email,
+      phone: this.state.phone,
+      status: this.state.status,
+      language: this.state.language,
+      website: this.state.website,
+      linkedin: this.state.linkedin,
+      github: this.state.github,
+      company: this.state.company,
+      bio: this.state.bio,
+      filePath: this.state.filePath,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
+    };
 
     this.props.createProfile(formData, this.props.history);
   };
@@ -99,8 +100,8 @@ class CreateProfile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onChangeImage = (e) => {
-    this.setState({ image: e.target.files[0] });
+  updateImages = (newImages) => {
+    this.setState({ filePath: newImages });
   };
 
   render() {
@@ -130,7 +131,7 @@ class CreateProfile extends Component {
           <div className="col-lg-8 col-md-10 col-sm-12 m-auto">
             <div className="p-3 create-profile">
               <h3 className="text-center p-2">Create Your Profile</h3>
-              <form onSubmit={this.onSubmit} encType="multipart/form-data">
+              <form onSubmit={this.onSubmit}>
                 {pageone && (
                   <div>
                     <div className="post-form mb-3">
@@ -205,13 +206,9 @@ class CreateProfile extends Component {
                     </h6>
                     <div className="card-body">
                       <p className="p-1  bg-dark text-white">Upload an Image</p>
-
-                      <input
-                        type="file"
-                        ref={this.inputRef}
-                        className="form-input mb-2"
-                        onChange={this.onChangeImage}
-                      />
+                      <div className="p-2">
+                        <FileUpload refreshFunction={this.updateImages} />
+                      </div>
 
                       <InputGroup
                         placeholder="Website"
@@ -293,7 +290,7 @@ class CreateProfile extends Component {
                 )}
                 <div className="mt-3 text-center">
                   <button
-                    type="submit"
+                    type="button"
                     onClick={this.prevPage}
                     disabled={pageone ? true : false}
                     className="btn btn-info  btn-sm"
@@ -301,7 +298,7 @@ class CreateProfile extends Component {
                     previous
                   </button>{' '}
                   <button
-                    type="submit"
+                    type="button"
                     onClick={this.nextPage}
                     disabled={pagethree ? true : false}
                     className="btn btn-info  btn-sm"

@@ -12,6 +12,25 @@ const checkObjectId = require('../../middleware/checkObjectId');
 const User = require('../../models/User');
 const Blog = require('../../models/Blog');
 
+//upload image
+router.post('/image', auth, upload.single('file'), async (req, res) => {
+  try {
+    await cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+      if (err) {
+        req.json(err.message);
+      }
+
+      req.body.filePath = result.secure_url;
+      return res.json({
+        success: true,
+        filePath: req.body.filePath
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // @route    Blog api/blogs
 // @desc     Create a blog
 // @access   Private
@@ -19,31 +38,19 @@ const Blog = require('../../models/Blog');
 router.post(
   '/',
   [
-    auth
-    /*  [
+    auth,
+    [
       check('text', 'Text field is required').not().isEmpty(),
       check('title', 'Please include a title to the blog').not().isEmpty(),
-      check('image', 'Please upload an image').not().isEmpty()
-    ] */
+      check('filePath', 'Please upload an image').not().isEmpty()
+    ]
   ],
-  upload.single('image'),
+
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-    let blogImage = await cloudinary.v2.uploader.upload(
-      req.file.path,
-      (err, result) => {
-        if (err) {
-          req.json(err.message);
-        }
-
-        return result;
-      }
-    );
-    req.body.image = blogImage.secure_url;
 
     try {
       const user = await User.findById(req.user.id).select('-password');
@@ -51,7 +58,7 @@ router.post(
       const newPost = new Blog({
         text: req.body.text,
         title: req.body.title,
-        image: req.body.image,
+        filePath: req.body.filePath,
         name: user.name,
         avatar: user.avatar,
         user: req.user.id

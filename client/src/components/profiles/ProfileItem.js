@@ -5,10 +5,9 @@ import isEmpty from '../../validation/is-empty';
 
 const ProfileItem = ({
   profile: {
-    image,
+    filePath,
     user: { _id, name, avatar },
-    status,
-    skills
+    status
   }
 }) => {
   return (
@@ -17,7 +16,7 @@ const ProfileItem = ({
         <div className="col-md-6 ">
           <Link to={`/profile/${_id}`}>
             <img
-              src={isEmpty(image) ? avatar : image}
+              src={isEmpty(filePath) ? avatar : filePath}
               alt=""
               className="rounded-circle"
               style={{ maxHeight: '160px', maxWidth: '160px' }}
@@ -41,22 +40,3 @@ ProfileItem.propTypes = {
 };
 
 export default ProfileItem;
-/* 
-
-<div className="col-md-5 d-none d-md-block">
-          {skills.length > 0 ? (
-            <div>
-              <h6>Skills set</h6>
-              <ul className="list-group">
-                {skills.slice(0, 3).map((skill, index) => (
-                  <li key={index} className="list-group-item">
-                    <i className="fa fa-check pr-1" />
-                    {skill.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            ''
-          )}
-        </div> */

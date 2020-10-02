@@ -11,7 +11,7 @@ const BlogItem = ({
   removeLike,
   deleteBlog,
   auth,
-  blog: { _id, text, user, likes, comments, title, date, image },
+  blog: { _id, text, user, likes, comments, title, date, filePath },
   showActions
 }) => {
   const [displayFeeds, setDisplayFeeds] = useState(false);
@@ -29,7 +29,7 @@ const BlogItem = ({
         <div className="col-md-5 mb-3">
           <img
             className="img-fluid"
-            src={image}
+            src={filePath}
             alt="blogImage"
             style={{ height: 'auto', width: 'auto' }}
           />
