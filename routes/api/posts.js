@@ -12,6 +12,23 @@ const checkObjectId = require('../../middleware/checkObjectId');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 
+//upload image
+
+router.post('/filePath', auth, upload.single('file'), async (req, res) => {
+  await cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+    if (err) {
+      req.json(err.message);
+    }
+   
+    req.body.filePath = result.secure_url;
+    console.log(req.body.filePath);
+    return res.json({
+      success: true,
+      filePath: req.body.filePath
+    });
+  });
+});
+
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
@@ -19,13 +36,13 @@ const Post = require('../../models/Post');
 router.post(
   '/',
   [auth /*  [check('text', 'Text field is required').not().isEmpty()] */],
-  upload.single('image'),
+  /*  upload.single('image'), */
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
+    /* 
     let postImage = await cloudinary.v2.uploader.upload(
       req.file.path,
       (err, result) => {
@@ -36,14 +53,14 @@ router.post(
         return result;
       }
     );
-    req.body.image = postImage.secure_url;
+    req.body.image = postImage.secure_url; */
 
     try {
       const user = await User.findById(req.user.id).select('-password');
 
       const newPost = new Post({
         text: req.body.text,
-        image: req.body.image,
+        /*  image: req.body.image, */
         name: user.name,
         avatar: user.avatar,
         user: req.user.id

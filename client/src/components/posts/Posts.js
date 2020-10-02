@@ -5,6 +5,7 @@ import PostItem from './PostItem';
 import ModalBox from './modal';
 import { getPosts } from '../../actions/postActions';
 import PostForm from './PostForm';
+import FileUploadForm from './fileUploadForm';
 
 const Posts = ({ getPosts, post: { posts } }) => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
 
                 {displayFeeds && <PostForm />}
               </div>
+              <FileUploadForm />
             </div>
             {posts.map((post) => (
               <PostItem key={post._id} post={post} />
