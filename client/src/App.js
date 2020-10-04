@@ -33,7 +33,8 @@ const App = () => {
       <Router>
         <Navbar />
 
-        <div className="container-fluid">
+        <div className="wrapper">
+          <div className="grad-bar"></div>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route component={Routes} />

@@ -4,36 +4,36 @@ class ProfilePersonalinfo extends Component {
   render() {
     const { profile } = this.props;
 
-    // Get first name
-
-    const firstName = profile.user.name.trim().split(' ')[0];
-
     return (
       <div>
-        <h5 className="personalInfoHeader">Personal Information</h5>
-
-        <ul className="list-group border-0">
+        <h5 className="profile-header">Personal Information</h5>
+        <div className="personalinfo-list">
           <p>
-            <i className="fas fa-user  mr-2 iconColor"></i> {firstName}
+            {' '}
+            <i className="fas fa-user  personalinfo-icon"></i>{' '}
+            {profile.user.name}
           </p>
           <p>
-            <i className="fas fa-address-card  mr-2 iconColor"></i>{' '}
+            {' '}
+            <i className="fas fa-address-card  personalinfo-icon"></i>{' '}
             {profile.address}
           </p>
           <p>
-            <i className="fas fa-envelope  mr-2 iconColor"></i>
+            {' '}
+            <i className="fas fa-envelope  personalinfo-icon"></i>
             {profile.email}
           </p>
           <p>
-            <i className="fas fa-phone  mr-2 iconColor"></i>
+            {' '}
+            <i className="fas fa-phone  personalinfo-icon "></i>
             {profile.phone}
           </p>
-
           <p>
-            <i className="fas fa-language  mr-2 iconColor"></i>
+            {' '}
+            <i className="fas fa-language  personalinfo-icon"></i>
             {profile.language}
           </p>
-        </ul>
+        </div>
       </div>
     );
   }

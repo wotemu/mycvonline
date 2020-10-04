@@ -18,17 +18,14 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Fragment>
           {profiles.length > 0 ? (
             profiles.map((profile) => (
-              <div
-                className="col-lg-4 col-md-6 col-sm-12 equalHeightCol"
-                key={profile._id}
-              >
-                {' '}
+              <div className="box" key={profile._id}>
                 <ProfileItem profile={profile} />
               </div>
             ))
           ) : (
-            <div className="col-lg-4 col-md-6 col-sm-12 ">
-              <h4 className="text-center pl-3">No profiles found...</h4>
+            <div className="NoProfiles">
+              <h4>No profiles found...</h4>
+              <p>Refresh the page</p>
             </div>
           )}
         </Fragment>
@@ -36,16 +33,13 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
     </Fragment>
   );
   return (
-    <div className="profiles">
-      <div className="row">
-        <div className="col-12 m-auto">
-          <div className="formHeader myOpacity p-2 mb-2 text-center">
-            <h3>List of Profiles Available</h3>
-          </div>
-        </div>
-      </div>
-      <div className="row">{profileItems}</div>
-    </div>
+    <Fragment>
+      <section className="headline">
+        <h2>Profiles Available</h2>
+        <p>Click on the button to view details of the profile!</p>
+      </section>
+      <section className="boxes">{profileItems}</section>
+    </Fragment>
   );
 };
 

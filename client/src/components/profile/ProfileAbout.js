@@ -6,23 +6,18 @@ class ProfileAbout extends Component {
   render() {
     const { profile } = this.props;
 
-    // Get first name
-    const firstName = profile.user.name
-      ? profile.user.name.trim().split(' ')[0]
-      : '';
-
     return (
-      <div>
-        <div className="mb-2">
-          <h5 className=" personalInfoHeader">{firstName}'s Bio</h5>
-          <p className="lead">
-            {isEmpty(profile.bio) ? (
-              <span>{firstName} does not have a bio</span>
-            ) : (
-              <span>{profile.bio}</span>
-            )}
-          </p>
-        </div>{' '}
+      <div >
+        <h5 className="profile-header">
+          {profile.user.name ? profile.user.name : ''}'s Bio
+        </h5>
+        <div className="bio-body">
+          {isEmpty(profile.bio) ? (
+            <p>{profile.user.name} does not have a bio</p>
+          ) : (
+            <p>{profile.bio}</p>
+          )}
+        </div>
       </div>
     );
   }

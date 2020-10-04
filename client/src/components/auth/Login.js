@@ -28,40 +28,33 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="container ">
-      <div className="row ">
-        <div
-          className="col-md-6 m-auto loginForm  p-3"
-          style={{ borderRadius: '5px' }}
-        >
-          <h2 className="myOpacity text-center">Log In</h2>
-          <h5 className="myOpacity text-center pb-4">
-            Sign in to your account
-          </h5>
-          <form onSubmit={onSubmit} className="p-3">
-            <TextFieldGroup
-              placeholder="Email Address"
-              name="email"
-              type="email"
-              value={email}
-              onChange={onChange}
-              required
-            />
+    <div className="reigister">
+      <div className="register-form">
+        <h2>Log In</h2>
+        <h5>Sign in to your account</h5>
+        <form onSubmit={onSubmit}>
+          <TextFieldGroup
+            placeholder="Email Address"
+            name="email"
+            type="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
 
-            <TextFieldGroup
-              placeholder="Password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={onChange}
-              minLength="6"
-            />
-            <input type="submit" className="btn formHeader btn-block" />
-            <p className="my-1">
-              Don't have an account? <Link to="/register">Sign Up</Link>
-            </p>
-          </form>
-        </div>
+          <TextFieldGroup
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={onChange}
+            minLength="6"
+          />
+          <input type="submit" className="btn" />
+          <p className="my-1">
+            Don't have an account? <Link to="/register">Sign Up</Link>
+          </p>
+        </form>
       </div>
     </div>
   );

@@ -34,49 +34,44 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <div className="container">
-      <div className="row">
-        <div
-          className="col-lg-6 col-md-6 col-sm-8 col-xs-12 m-auto loginForm p-3"
-          style={{ borderRadius: '5px' }}
-        >
-          <h2 className="myOpacity text-center">Sign Up</h2>
-          <h5 className="myOpacity text-center pb-4">Create account</h5>
-          <form noValidate onSubmit={onSubmit} className="p-3">
-            <TextFieldGroup
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={onChange}
-            />
-            <TextFieldGroup
-              placeholder="Email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={onChange}
-            />
-            <TextFieldGroup
-              placeholder="Password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={onChange}
-            />
-            <TextFieldGroup
-              placeholder="Confirm Password"
-              name="password2"
-              type="password"
-              value={password2}
-              onChange={onChange}
-            />
-            <input type="submit" className="btn formHeader btn-block" />
+    <div className="reigister">
+      <div className="register-form">
+        <h2>Sign Up</h2>
+        <h5>Create account</h5>
+        <form noValidate onSubmit={onSubmit}>
+          <TextFieldGroup
+            placeholder="Name"
+            name="name"
+            value={name}
+            onChange={onChange}
+          />
+          <TextFieldGroup
+            placeholder="Email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={onChange}
+          />
+          <TextFieldGroup
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={onChange}
+          />
+          <TextFieldGroup
+            placeholder="Confirm Password"
+            name="password2"
+            type="password"
+            value={password2}
+            onChange={onChange}
+          />
+          <input type="submit" className="btn" />
 
-            <p className="my-3">
-              Already have an account? <Link to="/login">Sign In</Link>
-            </p>
-          </form>
-        </div>
+          <p className="my-3">
+            Already have an account? <Link to="/login">Sign In</Link>
+          </p>
+        </form>
       </div>
     </div>
   );
