@@ -43,31 +43,64 @@ const Landing = ({ isAuthenticated }) => {
           </Link>
         </div>
       </section>
+      <section className="section-follow-us">
+        <h3>Follow Us</h3>
+      </section>
       <section className="boxes">
         <div className="box">
-          <i className="fas fa-chart-pie fa-4x"></i>
-          <h4>Analytics</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
+          <div className="box-follow-us">
+            <a
+              href="https://www.facebook.com/Wotemu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-facebook-f fa-4x"></i>
+            </a>
+          </div>
         </div>
         <div className="box">
-          <i className="fas fa-globe fa-4x"></i>
-          <h4>Marketing</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
+          {' '}
+          <div className="box-follow-us">
+            {' '}
+            <a
+              href="https://www.linkedin.com/in/workneh-tefera-tamire-6a7354118/"
+              target="blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-twitter fa-4x"></i>
+            </a>
+          </div>
         </div>
         <div className="box">
-          <i className="fas fa-cog fa-4x"></i>
-          <h4>Development</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
+          {' '}
+          <div className="box-follow-us">
+            {' '}
+            <a
+              href="https://www.instagram.com/watch_arse/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-instagram fa-4x"></i>
+            </a>
+          </div>
         </div>
         <div className="box">
-          <i className="fas fa-users fa-4x"></i>
-          <h4>Support</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
+          {' '}
+          <div className="box-follow-us">
+            {' '}
+            <a
+              href="https://www.linkedin.com/in/workneh-tefera-tamire-6a7354118/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-linkedin fa-4x"></i>
+            </a>
+          </div>
         </div>
       </section>
       <section className="info">
         <img src="../../img/showcase.jpg" alt="" />
-        <h2>Your business web</h2>
+        <h2>About Us</h2>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui quasi
           debitis nam odit modi culpa aliquid animi veritatis ab architecto
@@ -75,8 +108,12 @@ const Landing = ({ isAuthenticated }) => {
           laborum minima. Commodi?
         </p>
         <Link to="/login" className="btn btn-lgbtn-info  ">
-          <i className="fas fa-sign-in-alt"></i> Buy now
+          <i className="fas fa-sign-in-alt"></i> Login
         </Link>
+      </section>
+
+      <section className="section-portfolio">
+        <h3>Portfolios</h3>
       </section>
       <section className="portfolio">
         <img src="https://source.unsplash.com/random/200x200" alt="" />

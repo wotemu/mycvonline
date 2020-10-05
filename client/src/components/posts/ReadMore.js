@@ -36,7 +36,7 @@ class ReadMore extends Component {
       this.setState({ expand: true });
     };
     const showMore = (
-      <span className="showMore" onClick={handleShowMoreClick}>
+      <span className="showMore showMore-blue" onClick={handleShowMoreClick}>
         more
       </span>
     );

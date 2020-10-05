@@ -37,23 +37,25 @@ class PostForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <div className="form-group pt-3 ">
-          <TextAreaFieldGroup
-            placeholder="Start a post"
-            name="text"
-            value={this.state.text}
-            onChange={this.onChange}
-            className="border-0"
-          />
-          <FileUpload refreshFunction={this.updateImages} />
-          <div className="pt-1">
-            <button type="submit" className="btn formHeader">
-              Submit
-            </button>
+      <div className="feeds-page-post-form-container">
+        <form onSubmit={this.onSubmit} className="feeds-page-post-form">
+          <div className="post-form ">
+            <TextAreaFieldGroup
+              placeholder="Start a post"
+              name="text"
+              value={this.state.text}
+              onChange={this.onChange}
+              className="border-0"
+            />
+            <FileUpload refreshFunction={this.updateImages} />
+            <div className="pt-1">
+              <button type="submit" className="btn">
+                Submit
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>{' '}
+      </div>
     );
   }
 }

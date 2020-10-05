@@ -27,33 +27,30 @@ const PostItem = ({
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="border p-3 mb-2">
-      <div className="row no-gutters ">
-        <div className="col-auto">
-          <img src={AvatarImage} className="avatar rounded-circle " alt="" />
-        </div>
-
-        <div className="card-block ">
-          <p className="text-muted ">{name}</p>
-          <p className="text-muted">
-            <span>Posted on </span> &nbsp;
-            <Moment format="MMM DD, YYYY">{createDate}</Moment>
-          </p>
-        </div>
-      </div>
-      <div className="pt-3 pb-3">
+    <div className="feeds-item-container">
+      <p className="post-avatar ">
+        <span className="">
+          <img src={AvatarImage} className="avatar" alt="" />
+        </span>
+        <span>Posted by </span> <span>{name}</span>
+        <span>on</span>
+        <span>
+          <Moment format="MMM DD, YYYY">{createDate}</Moment>
+        </span>
+      </p>
+      <div className="post-main-body">
         <ReadMore more={text} />
       </div>
-      <img className="detail-page-video img-fluid" src={filePath} alt="" />
-      <div className="border p-2">
-        <p className="text-muted ">
+      <img className="" src={filePath} alt="" />
+      <div className="">
+        <p className="">
           <span className="pl-2">
             {showActions ? (
               <span>
                 <button
                   onClick={() => addLike(_id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn-small"
                 >
                   <i className="fas fa-thumbs-up" />{' '}
                   <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
@@ -61,7 +58,7 @@ const PostItem = ({
                 <button
                   onClick={() => removeLike(_id)}
                   type="button"
-                  className="btn btn-light mr-1"
+                  className="btn-small"
                 >
                   <i className="text-secondary fas fa-thumbs-down pl-1" />
                 </button>
@@ -73,7 +70,7 @@ const PostItem = ({
                     }));
                   }}
                 >
-                  comment <i className="fas fa-comment  pl-1 "></i>
+                  comment <i className="fas fa-comment   "></i>
                   <span className="badge badge-light">{comments.length}</span>
                 </button>
 
@@ -81,7 +78,7 @@ const PostItem = ({
                   <button
                     onClick={() => deletePost(_id)}
                     type="button"
-                    className="btn btn-danger btn-sm"
+                    className="btn-small btn-red"
                   >
                     <i className="fas fa-times fa-sm"></i>
                   </button>
@@ -90,12 +87,10 @@ const PostItem = ({
             ) : null}
           </span>{' '}
           <span className="pl-4">
-            <button className=" btn btn-default p-1 border-0 text-muted">
-              {diffDays} views
-            </button>
+            <button className=" btn-small">{diffDays} views</button>
 
             <span>
-              <button className="btn btn-default p-1 border-0 ml-3">
+              <button className="btn-small">
                 <Moment format="MMM DD, YYYY">{createDate}</Moment>
               </button>
             </span>
@@ -114,7 +109,7 @@ const PostItem = ({
                     displayFeeds: !prevState.displayFeeds
                   }));
                 }}
-                className="btn btn-default"
+                className="btn-small"
               >
                 View Comments{' '}
                 <i className="fas fa-chevron-circle-down pl-2"></i>
@@ -124,7 +119,7 @@ const PostItem = ({
         )}
 
         {displayFeeds && <CommentFeed postId={_id} comments={comments} />}
-      </div>{' '}
+      </div>
     </div>
   );
 };

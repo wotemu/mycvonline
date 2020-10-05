@@ -13,26 +13,26 @@ const Posts = ({ getPosts, post: { posts } }) => {
   const [displayFeeds, toggleDisplayFeeds] = useState(false);
 
   return (
-    <div className="feed">
-      <div className="container">
-        <div className="row" style={{ backgroundColor: 'white' }}>
-          <div className="col-lg-8 col-md-10 col-sm-12 m-auto ">
-            <div className=" border mb-5 mt-3">
-              <div className="card-body">
-                <input
-                  onClick={() => toggleDisplayFeeds(!displayFeeds)}
-                  placeholder="Say something..."
-                  className="form-control"
-                />
+    <div className="feeds-page">
+      <div className="feeds-page-item">
+        <div className="feeds-page-item-body-color"></div>
+      </div>
+      <div className="feeds-page-item ">
+        <input
+          onClick={() => toggleDisplayFeeds(!displayFeeds)}
+          placeholder="Say something..."
+          className="form-control disabled"
+        />
 
-                {displayFeeds && <PostForm />}
-              </div>
-            </div>
-            {posts.map((post) => (
-              <PostItem key={post._id} post={post} />
-            ))}
-          </div>
+        {displayFeeds && <PostForm />}
+        <div className="feeds-page-body">
+          {posts.map((post) => (
+            <PostItem key={post._id} post={post} />
+          ))}
         </div>
+      </div>{' '}
+      <div className="feeds-page-item">
+        <div className="feeds-page-item-body-color"></div>
       </div>
     </div>
   );

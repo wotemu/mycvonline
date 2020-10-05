@@ -16,9 +16,12 @@ const Blog = ({ getBlog, blog: { blog, loading }, match }) => {
     <Spinner />
   ) : (
     <div>
-      <Link to="/blogs">
-        <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
-      </Link>
+      <section className="details-blogs-boxes-back-to">
+        <Link to="/blogs">
+          <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+        </Link>
+      </section>
+
       <section className="details-blogs-boxes">
         <BlogItem blog={blog} showActions={true} />
       </section>

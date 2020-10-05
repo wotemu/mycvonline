@@ -421,7 +421,7 @@ nav ul li a:hover {
 }
 
 .btn-small {
-  color: var(--dark);
+  color: var(--white);
   padding: 5px 10px;
   text-decoration: none;
   margin: 5px;
@@ -515,7 +515,6 @@ p {
   grid-template-columns: 'blogs-header-body';
 }
 
-
 .blogs-header-body {
   grid-area: blogs-header-body;
   max-width: 600px;
@@ -532,8 +531,6 @@ p {
   background: var(--topBar);
   margin-bottom: 10px;
 }
-
-
 
 .blogs {
   display: grid;
@@ -566,11 +563,16 @@ p {
 }
 
 /*details blogs page*/
+.details-blogs-boxes-back-to {
+  display: grid;
+  grid-gap: 20px;
+  padding-bottom: 20px;
+  grid-template-columns: 100%;
+}
 
 .details-blogs-boxes {
   display: grid;
-  grid-gap: 30px;
-  padding-top: 50px;
+  grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
@@ -579,7 +581,6 @@ p {
   background: var(--topBar);
   padding: 5px;
 }
-
 
 .details-blogs-box p {
   color: var(--dark);
@@ -631,14 +632,86 @@ p {
   border-radius: 50%;
 }
 
-.displayFeeds{
+.displayFeeds {
   margin-top: 20px;
 }
+
+/*feeds-page*/
+.feeds-page {
+  display: grid;
+  grid-gap: 30px;
+  padding-top: 50px;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.feeds-page-item p {
+  padding: 20px;
+  text-align: justify;
+}
+
+.feeds-page-item img {
+  width: 100%;
+}
+
+
+.feeds-item-container {
+  border: 1px solid lightgray;
+  padding: 20px;
+
+  margin-top: 20px;
+}
+
+.post-avatar span {
+  padding-left: 10px;
+  color: var(--dark);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+}
+
+.post-main-body {
+  padding: 20px;
+}
+
+.showMore-blue {
+  color: blue;
+}
+
+.comment-form-feeds {
+  border: 1px darkgray solid;
+}
+
+.feeds-page-post-form {
+  padding: 20px;
+}
+
+.feeds-page-post-form-container {
+  margin-top: 20px;
+  border: 1px darkgray solid;
+}
+
+.comment-form-text {
+  color: var(--dark);
+}
+
+.feeds-page-item-body-color {
+  background-color: var(--dark);
+}
+
 /*boxes*/
 .boxes {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.box-follow-us {
+  padding: 20px;
 }
 
 .box h5 {
@@ -680,6 +753,50 @@ p {
   text-align: justify;
 }
 
+.section-follow-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--topBar);
+}
+
+.section-follow-us h3 {
+  color: var(--light);
+  padding: 5px;
+}
+
+.headline-profiles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--topBar);
+  margin-bottom: 20px;
+}
+
+.headline-profiles h2,
+p {
+  color: var(--light);
+  padding: 5px;
+
+}
+
+.section-portfolio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--topBar);
+
+}
+
+.section-portfolio h3 {
+  color: var(--light);
+  padding: 5px;
+
+}
+
 /*portfolio*/
 .portfolio {
   display: grid;
@@ -694,11 +811,6 @@ p {
 
 /*register and login page*/
 .reigister {
-  min-height: 400px;
-  background: url('./img/showcase.jpg') no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -709,7 +821,7 @@ p {
   text-align: center;
   background: var(--topBar);
   border-radius: 3px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .register-form {
@@ -1030,10 +1142,30 @@ input {
     padding-top: 10px;
   }
 
+  .feeds-page {
+    display: grid;
+    grid-gap: 0px;
+    padding-top: 50px;
+    grid-template-columns: 0% 100% 00%;
+  }
+
+  .blogs-header-content {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: 'blogs-header-body';
+  }
+
+  .details-blogs-boxes {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
+
+
   .showcase h1 {
     font-size: 2.5rem;
   }
-
 
   /* MOBILE HEADINGS */
 
@@ -1086,10 +1218,24 @@ input {
       'top-box-b';
   }
 
+  .feeds-page {
+    display: grid;
+    grid-gap: 0px;
+    padding-top: 50px;
+    grid-template-columns: 0% 100% 00%;
+  }
+
+  .blogs-header-content {
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: 'blogs-header-body';
+  }
+
   .profile-detail {
     grid-template-areas: 'header''personal''about''experience''education''skills''portfolios''hobby''reference';
     padding-top: 10px;
   }
+
 
   .blogs-header-body {
     grid-area: blogs-header-body;
