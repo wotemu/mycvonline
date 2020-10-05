@@ -7,17 +7,12 @@ class ProfileAbout extends Component {
     const { profile } = this.props;
 
     return (
-      <div >
-        <h5 className="profile-header">
-          {profile.user.name ? profile.user.name : ''}'s Bio
-        </h5>
-        <div className="bio-body">
-          {isEmpty(profile.bio) ? (
-            <p>{profile.user.name} does not have a bio</p>
-          ) : (
-            <p>{profile.bio}</p>
-          )}
-        </div>
+      <div>
+        {isEmpty(profile.bio) ? (
+          <p>{profile.user.name} does not have a bio</p>
+        ) : (
+          <p>{profile.bio}</p>
+        )}
       </div>
     );
   }

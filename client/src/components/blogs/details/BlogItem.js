@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
@@ -23,117 +23,97 @@ const BlogItem = ({
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-5 mb-3">
-          <img
-            className="img-fluid"
-            src={filePath}
-            alt="blogImage"
-            style={{ height: 'auto', width: 'auto' }}
-          />
-        </div>
-        <div className="col-md-5">
-          <h5 className="detailsPageHeader"> {title}</h5>
-          <p className="detailsPageText">{text}</p>
-        </div>
-        <div className="col-md-1"></div>
+    <Fragment>
+      <div className="details-blogs-box">
+        <img src={filePath} alt="blogImage" />
       </div>
-      <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-10 border  m-3 p-2">
-          <p className="text-muted ">
-            <span className="pl-2">
-              {showActions ? (
-                <span>
-                  <button
-                    onClick={() => addLike(_id)}
-                    type="button"
-                    className="btn btn-light mr-1"
-                  >
-                    <i className="fas fa-thumbs-up" />{' '}
-                    <span>
-                      {likes.length > 0 && <span>{likes.length}</span>}
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => removeLike(_id)}
-                    type="button"
-                    className="btn btn-light mr-1"
-                  >
-                    <i className="text-secondary fas fa-thumbs-down pl-1" />
-                  </button>
-                  <button
-                    className="btn-default border-0 p-1 text-muted mr-2"
-                    onClick={() => {
-                      setDisplayCommentForm((prevState) => ({
-                        displayCommentForm: !prevState.displayCommentForm
-                      }));
-                    }}
-                  >
-                    comment <i className="fas fa-comment  pl-1 "></i>
-                    <span className="badge badge-light">{comments.length}</span>
-                  </button>
-
-                  {!auth.loading && user === auth.user._id && (
-                    <button
-                      onClick={() => deleteBlog(_id)}
-                      type="button"
-                      className="btn btn-danger btn-sm"
-                    >
-                      <i className="fas fa-times fa-sm"></i>
-                    </button>
-                  )}
-                </span>
-              ) : null}
-            </span>{' '}
-            <span className="pl-4">
-              <button className=" btn btn-default p-1 border-0 text-muted">
-                {diffDays} views
-              </button>
-
+      <div className="details-blogs-box">
+        <div>
+          {' '}
+          <h5> {title}</h5>
+          <p>{text}</p>
+        </div>
+      </div>
+      <div className="blogs-comment">
+        <p className=" ">
+          <span className="">
+            {showActions ? (
               <span>
-                <button className="btn btn-default p-1 border-0 ml-3">
-                  <Moment format="MMM DD, YYYY">{createDate}</Moment>
-                </button>
-              </span>
-            </span>
-          </p>
-        </div>{' '}
-        <div className="col-md-1"></div>
-      </div>
-      <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-10">
-          {displayCommentForm && (
-            <div>
-              <CommentForm postId={_id} />
-              <div className="mb-3 pl-2">
                 <button
+                  onClick={() => addLike(_id)}
                   type="button"
+                  className="btn-small"
+                >
+                  <i className="fas fa-thumbs-up" />{' '}
+                  <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+                </button>
+                <button
+                  onClick={() => removeLike(_id)}
+                  type="button"
+                  className="btn-small "
+                >
+                  <i className="text-secondary fas fa-thumbs-down" />
+                </button>
+                <button
+                  className="btn-small"
                   onClick={() => {
-                    setDisplayFeeds((prevState) => ({
-                      displayFeeds: !prevState.displayFeeds
+                    setDisplayCommentForm((prevState) => ({
+                      displayCommentForm: !prevState.displayCommentForm
                     }));
                   }}
-                  className="btn btn-default"
                 >
-                  View Comments{' '}
-                  <i className="fas fa-chevron-circle-down pl-2"></i>
+                  comment <i className="fas fa-comment "></i>
+                  <span className="badge badge-light">{comments.length}</span>
                 </button>
-              </div>
-            </div>
-          )}
 
+                {!auth.loading && user === auth.user._id && (
+                  <button
+                    onClick={() => deleteBlog(_id)}
+                    type="button"
+                    className="btn-small btn-red"
+                  >
+                    <i className="fas fa-times fa-sm"></i>
+                  </button>
+                )}
+              </span>
+            ) : null}
+          </span>{' '}
+          <span className="">
+            <button className=" btn-small ">{diffDays} views</button>
+            <button className=" btn-small ">
+              <Moment format="MMM DD, YYYY">{createDate}</Moment>
+            </button>
+          </span>
+        </p>
+      </div>{' '}
+      <div className="blogs-comment">
+        {displayCommentForm && (
+          <div>
+            <CommentForm postId={_id} />
+            <div className="">
+              <button
+                type="button"
+                onClick={() => {
+                  setDisplayFeeds((prevState) => ({
+                    displayFeeds: !prevState.displayFeeds
+                  }));
+                }}
+                className="btn-small "
+              >
+                View Comments <i className="fas fa-chevron-circle-down "></i>
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="displayFeeds">
           {displayFeeds &&
             comments.map((comment) => (
               <CommentItem key={comment._id} comment={comment} postId={_id} />
             ))}
         </div>
-        <div className="col-md-1"></div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

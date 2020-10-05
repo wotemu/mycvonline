@@ -15,15 +15,10 @@ const BlogHeader = ({ getBlogs, blog: { blogs } }) => {
   return (
     <Carousel infiniteLoop useKeyboardArrows autoPlay showThumbs={false}>
       {blogs.map((blog) => (
-        <div className="card p-0 border-0 text-center" key={blog._id}>
-          <img
-            className="img-fluid"
-            src={blog.filePath}
-            alt="blogImage"
-            style={{ width: 'auto', maxHeight: '600px' }}
-          />
-          <Link to={`/blog/${blog._id}`} className="blogsPageLink">
-            <h5 className="headePageText"> {blog.title}</h5>
+        <div key={blog._id}>
+          <img src={blog.filePath} className="img-fluid" alt="blogImage" />
+          <Link to={`/blog/${blog._id}`}>
+            <h5> {blog.title}</h5>
           </Link>
         </div>
       ))}

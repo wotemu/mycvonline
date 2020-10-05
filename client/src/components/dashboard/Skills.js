@@ -11,7 +11,7 @@ const Skills = ({ skills, deleteSkills }) => {
       <td>
         <button
           onClick={() => deleteSkills(skill._id)}
-          className="btn btn-danger btn-sm"
+          className="btn-small btn-red"
         >
           <i className="fas fa-times fa-sm"></i>
         </button>

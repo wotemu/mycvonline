@@ -15,14 +15,13 @@ const Blog = ({ getBlog, blog: { blog, loading }, match }) => {
   return loading || blog === null ? (
     <Spinner />
   ) : (
-    <div className="card card-body  border-0">
-      <div className="row">
-        <div className="col-md-1"></div>
-        <Link to="/blogs" className="btn btn-light mb-3">
-          <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
-        </Link>
-      </div>
-      <BlogItem blog={blog} showActions={true} />
+    <div>
+      <Link to="/blogs">
+        <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+      </Link>
+      <section className="details-blogs-boxes">
+        <BlogItem blog={blog} showActions={true} />
+      </section>
     </div>
   );
 };

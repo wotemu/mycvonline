@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { string } from "prop-types";
+import React, { Component } from 'react';
+import { string } from 'prop-types';
 //import { FormattedMessage } from "react-intl";
-import truncate from "lodash/truncate";
+import truncate from 'lodash/truncate';
 
 // Approximated collapsed size so that there are ~three lines of text
 // in the desktop layout in the host section of the ListingPage.
-const BLOG_COLLAPSED_LENGTH = 50;
+const BLOG_COLLAPSED_LENGTH = 30;
 
 const truncated = (s) => {
   return truncate(s, {
@@ -18,7 +18,7 @@ const truncated = (s) => {
     // This ensures that the final text doesn't get cut in the middle
     // of a word.
     separator: /\s|,|\.|:|;/,
-    omission: "…",
+    omission: '…'
   });
 };
 
@@ -36,9 +36,7 @@ class ReadMore extends Component {
       this.setState({ expand: true });
     };
     const showMore = (
-      <span className="showMore" onClick={handleShowMoreClick}>
-        <i className="fas fa-arrow-right"></i>
-      </span>
+      <span className="showMore" onClick={handleShowMoreClick}></span>
     );
     return (
       <span className={className}>
@@ -53,6 +51,6 @@ ReadMore.defaultProps = { className: null };
 
 ReadMore.propTypes = {
   className: string,
-  more: string.isRequired,
+  more: string.isRequired
 };
 export default ReadMore;

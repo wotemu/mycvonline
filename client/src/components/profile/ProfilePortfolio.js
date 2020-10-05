@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProfilePortfolio = ({ portfolio: { name, link } }) => (
-  <div className="profile-experience-detail ">
+  <div className="">
     <i className="fa fa-check " />
     <span> {name}</span> <a href={link}>&nbsp;&nbsp;View</a>
   </div>

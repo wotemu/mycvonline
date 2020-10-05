@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { deletePortfolio } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { deletePortfolio } from '../../actions/profileActions';
 
 class Portfolio extends Component {
   onDeleteClick(id) {
@@ -17,10 +17,10 @@ class Portfolio extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, ref._id)}
-            className="btn btn-danger btn-sm"
-        >
-        <i className="fas fa-times fa-sm"></i>
-        </button>
+            className="btn-small btn-red"
+          >
+            <i className="fas fa-times fa-sm"></i>
+          </button>
         </td>
       </tr>
     ));
@@ -44,7 +44,7 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
-  deletePortfolio: PropTypes.func.isRequired,
+  deletePortfolio: PropTypes.func.isRequired
 };
 
 export default connect(null, { deletePortfolio })(Portfolio);

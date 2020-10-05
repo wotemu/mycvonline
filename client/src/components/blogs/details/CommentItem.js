@@ -11,34 +11,30 @@ const CommentItem = ({
   auth,
   deleteComment
 }) => (
-  <div className="card card-body mb-1 pb-1">
-    <div className="row">
-      <div className="col-md-3">
-        <Link to={`/profile/${user}`}>
-          <img className="avatar rounded-circle" src={avatar} alt="" />
-          <p>{name}</p>
-        </Link>
-      </div>
-      <div className="col-md-7">
-        <p className="">{text}</p>
-      </div>
-      <div className="col-md-2">
-        <p className="text-muted pb-2" style={{ fontSize: '12px' }}>
-          On <Moment format="MMM DD, YYYY">{date}</Moment>
-          <span className="pl-2">
-            {!auth.loading && user === auth.user._id && (
-              <button
-                onClick={() => deleteComment(postId, _id)}
-                type="button"
-                className="btn btn-danger btn-sm"
-              >
-                <i className="fas fa-times fa-sm"></i>
-              </button>
-            )}
-          </span>
-        </p>
-      </div>
-    </div>
+  <div className="commented-by">
+    <p className="">{text}</p>
+    <p>
+      {' '}
+      <Link to={`/profile/${user}`}>
+        <img className="" src={avatar} alt="" />
+        <span>{name}</span>
+      </Link>
+      <span className="" style={{ fontSize: '12px' }}>
+        Posted on <Moment format="MMM DD, YYYY">{date}</Moment>
+      </span>
+      <span className="">
+        {!auth.loading && user === auth.user._id && (
+          <button
+            onClick={() => deleteComment(postId, _id)}
+            type="button"
+            className="btn-red btn-small"
+          >
+            <i className="fas fa-times fa-sm"></i>
+          </button>
+        )}
+      </span>
+    </p>
+    <hr />
   </div>
 );
 

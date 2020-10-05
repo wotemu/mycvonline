@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 const ProfileExperience = ({
   experience: { company, title, location, current, to, from, description }
 }) => (
-  <div className="profile-experience-detail ">
+  <div>
     <h5 className="">{company}</h5>
     <p>
       {' '}
@@ -30,6 +30,7 @@ const ProfileExperience = ({
         </span>
       )}
     </p>{' '}
+    <hr />
   </div>
 );
 

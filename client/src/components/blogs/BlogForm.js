@@ -40,48 +40,36 @@ class BlogForm extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-lg-6 col-md-8 col-sm-12 m-auto">
-          <div className="post-form mb-3">
-            <div className="card card-info border-0">
-              <div className="card-header bg-info text-white text-center">
-                Blog Form
-              </div>
-              <div className="card-body">
-                <form onSubmit={this.onSubmit} encType="multipart/form-data">
-                  <div className="form-group">
-                    <div className="post-form mb-2">
-                      <div className="card card-info">
-                        <h5 className="p-1  formHeader text-white">
-                          Upload an Image
-                        </h5>
-                        <div className="p-2">
-                          <FileUpload refreshFunction={this.updateImages} />
-                        </div>
-                      </div>
-                    </div>
-                    <TextFieldGroup
-                      placeholder="Title"
-                      name="title"
-                      value={this.state.title}
-                      onChange={this.onChange}
-                      info="Title of the blog"
-                    />
+      <div className="reigister">
+        <div className="register-form">
+          <h5>Blog Form</h5>
 
-                    <TextAreaFieldGroup
-                      placeholder="Blog content"
-                      name="text"
-                      value={this.state.text}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-dark">
-                    Submit
-                  </button>
-                </form>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <TextFieldGroup
+                placeholder="Title"
+                name="title"
+                value={this.state.title}
+                onChange={this.onChange}
+              />
+
+              <TextAreaFieldGroup
+                placeholder="Blog content"
+                name="text"
+                value={this.state.text}
+                onChange={this.onChange}
+              />
+              <div className="upload">
+                <h6 className="">Upload an Image</h6>
+                <div className="p">
+                  <FileUpload refreshFunction={this.updateImages} />
+                </div>
               </div>
             </div>
-          </div>
+            <button type="submit" className="btn">
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     );

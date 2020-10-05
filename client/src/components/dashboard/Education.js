@@ -16,9 +16,9 @@ const Education = ({ education, deleteEducation }) => {
       <td>
         <button
           onClick={() => deleteEducation(edu._id)}
-          className="btn btn-danger btn-sm"
+          className="btn-small btn-red"
         >
-        <i className="fas fa-times fa-sm"></i>
+          <i className="fas fa-times fa-sm"></i>
         </button>
       </td>
     </tr>

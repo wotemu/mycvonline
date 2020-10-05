@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 const ProfileEducation = ({
   education: { school, degree, fieldofstudy, current, to, from, description }
 }) => (
-  <div className="profile-experience-detail ">
+  <div>
     <h5>{school}</h5>
     <p>
       {' '}
@@ -26,6 +26,7 @@ const ProfileEducation = ({
         </span>
       )}
     </p>{' '}
+    <hr />
   </div>
 );
 

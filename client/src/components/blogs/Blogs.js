@@ -12,46 +12,36 @@ const Blogs = ({ getBlogs, blog: { blogs } }) => {
   }, [getBlogs]);
 
   return (
-    <div className="blog">
-      <div className="container pt-3" style={{ backgroundColor: 'white' }}>
-        <div className="row">
-          <div className="col-md-8 m-auto text-center">
-            <BolgHeader />
-          </div>
+    <div>
+      <div className="list-of-blogs">
+        <h5 className="">Blogs</h5>
+      </div>
+      <div className="blogs-header-content">
+        <div className="blogs-header-body">
+          <BolgHeader />
         </div>
-
+      </div>
+      <div className="list-of-articles">
+        <h5 className="">Articles</h5>
+      </div>
+      <div className="blogs">
         {blogs.length === 0 ? (
-          <div className="NoBlogsBgc">
-            <h5 className="text-center  blogsPageArticles p-2">
-              No blogs to display
-            </h5>
-          </div>
+          <h5 className="">No blogs to display</h5>
         ) : (
-          <div>
-            <h2 className="text-center  blogsPageHeader">Blogs</h2>
-            <h5 className="text-center  blogsPageArticles">All Blogs</h5>
-            <div className="row">
-              {blogs.map((blog) => (
-                <div className="col-md-3 equalHeightCol" key={blog._id}>
-                  <div className="card card-body mb-3  border-0">
-                    <Link to={`/blog/${blog._id}`} className="blogsPageLink">
-                      <div className="pb-1">
-                        <img
-                          className="img-fluid blogsPageImage "
-                          src={blog.filePath}
-                          alt="blogImage"
-                        />
-                      </div>
-                      <h6 className="blogPageTitle"> {blog.title}</h6>
-                      <p className="blogPageText">
-                        <ReadMore more={blog.text} />{' '}
-                      </p>
-                    </Link>
-                  </div>
-                </div>
-              ))}
+          blogs.map((blog) => (
+            <div className="blog" key={blog._id}>
+              <Link to={`/blog/${blog._id}`}>
+                <img className=" " src={blog.filePath} alt="blogImage" />
+                <h6 className="">
+                  {' '}
+                  <ReadMore more={blog.title} />
+                </h6>
+                <p className="">
+                  <ReadMore more={blog.text} />{' '}
+                </p>
+              </Link>
             </div>
-          </div>
+          ))
         )}
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProfileHobbies = ({ hobbies: { hobby } }) => (
-  <div className="profile-experience-detail ">
+  <div>
     <i className="fa fa-check " /> {hobby}
   </div>
 );

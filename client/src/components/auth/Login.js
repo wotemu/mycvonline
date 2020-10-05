@@ -50,8 +50,10 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={onChange}
             minLength="6"
           />
-          <input type="submit" className="btn" />
-          <p className="my-1">
+          <button type="submit" className="btn">
+            Submit
+          </button>
+          <p className="">
             Don't have an account? <Link to="/register">Sign Up</Link>
           </p>
         </form>

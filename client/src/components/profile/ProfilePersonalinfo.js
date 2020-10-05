@@ -6,31 +6,30 @@ class ProfilePersonalinfo extends Component {
 
     return (
       <div>
-        <h5 className="profile-header">Personal Information</h5>
-        <div className="personalinfo-list">
+        <div className="">
           <p>
             {' '}
-            <i className="fas fa-user  personalinfo-icon"></i>{' '}
+            <i className="fas fa-user  profile-body-icon"></i>{' '}
             {profile.user.name}
           </p>
           <p>
             {' '}
-            <i className="fas fa-address-card  personalinfo-icon"></i>{' '}
+            <i className="fas fa-address-card  profile-body-icon"></i>{' '}
             {profile.address}
           </p>
           <p>
             {' '}
-            <i className="fas fa-envelope  personalinfo-icon"></i>
+            <i className="fas fa-envelope  profile-body-icon"></i>
             {profile.email}
           </p>
           <p>
             {' '}
-            <i className="fas fa-phone  personalinfo-icon "></i>
+            <i className="fas fa-phone  profile-body-icon "></i>
             {profile.phone}
           </p>
           <p>
             {' '}
-            <i className="fas fa-language  personalinfo-icon"></i>
+            <i className="fas fa-language  profile-body-icon"></i>
             {profile.language}
           </p>
         </div>

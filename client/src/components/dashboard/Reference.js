@@ -18,7 +18,7 @@ class Reference extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, ref._id)}
-            className="btn btn-danger btn-sm"
+            className="btn-small btn-red"
           >
             <i className="fas fa-times fa-sm"></i>
           </button>

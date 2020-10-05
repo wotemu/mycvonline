@@ -15,7 +15,7 @@ const ProfileItem = ({
       <Link to={`/profile/${_id}`}>
         <img src={isEmpty(filePath) ? avatar : filePath} alt="" />
       </Link>
-      <h4>{name}</h4>
+      <h5>{name}</h5>
       <p>{status} </p>
       <Link to={`/profile/${_id}`} className="btn">
         View Profile

@@ -28,109 +28,133 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
       ) : (
         <Fragment>
           <div className="back-to">
-            <Link to="/profiles">
-              <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
-            </Link>
+            <p>
+              {' '}
+              <Link to="/profiles">
+                <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+              </Link>{' '}
+              <span className="profile-detail-back-to">
+                {profile.user.name ? profile.user.name : ''}'s Profile Details
+              </span>{' '}
+            </p>
           </div>
           <div className="profile-detail">
-            <div className="profile-header">
+            <div className="header">
               <ProfileHeader profile={profile} />
             </div>
-            <div className="profile-personal">
-              <ProfilePersonalinfo profile={profile} />
+            <div className="personal">
+              <h5 className="profile-header">Personal Information</h5>
+              <div className="profile-body">
+                <ProfilePersonalinfo profile={profile} />
+              </div>
             </div>
-            <div className="profile-about">
-              <ProfileAbout profile={profile} />
+            <div className="about">
+              <h5 className="profile-header">
+                {' '}
+                {profile.user.name ? profile.user.name : ''}'s Bio
+              </h5>
+              <div className="profile-body">
+                <ProfileAbout profile={profile} />
+              </div>
             </div>
-          </div>
-
-          <div className="profile-credentials">
-            <div className="profile-experience">
-              {profile.experience.length > 0 ? (
-                <Fragment>
-                  <h5 className="profile-header">Experiences</h5>
-                  {profile.experience.map((experience) => (
-                    <ProfileExperience
-                      key={experience._id}
-                      experience={experience}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h5 className="profile-header">No experience to list</h5>
-              )}
+            <div className="experience">
+              <h5 className="profile-header">Experiences</h5>
+              <div className="profile-body">
+                {profile.experience.length > 0 ? (
+                  <Fragment>
+                    {profile.experience.map((experience) => (
+                      <ProfileExperience
+                        key={experience._id}
+                        experience={experience}
+                      />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No experience to list</h5>
+                )}
+              </div>
             </div>
-            <div className="profile-education">
-              {profile.education.length > 0 ? (
-                <Fragment>
-                  <h5 className="profile-header">Qualifications</h5>
-                  {profile.education.map((education) => (
-                    <ProfileEducation
-                      key={education._id}
-                      education={education}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h5 className="profile-header">No education to list</h5>
-              )}
+            <div className="education">
+              <h5 className="profile-header">Qualifications</h5>
+              <div className="profile-body">
+                {profile.education.length > 0 ? (
+                  <Fragment>
+                    {profile.education.map((education) => (
+                      <ProfileEducation
+                        key={education._id}
+                        education={education}
+                      />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No education to list</h5>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="profile-others">
-            <div className="profile-skills">
-              {profile.skills.length > 0 ? (
-                <Fragment>
-                  <h5 className="profile-header">Skills Set</h5>
-                  {profile.skills.map((skill) => (
-                    <ProfileSkills key={skill._id} skills={skill} />
-                  ))}
-                </Fragment>
-              ) : (
-                <h5 className="profile-header">No skill to list</h5>
-              )}
+            <div className="skills">
+              <h5 className="profile-header">Skills Set</h5>
+              <div className="profile-body ">
+                {profile.skills.length > 0 ? (
+                  <Fragment>
+                    {profile.skills.map((skill) => (
+                      <ProfileSkills key={skill._id} skills={skill} />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No skill to list</h5>
+                )}
+              </div>
             </div>
-            <div className="profile-portfolio">
-              {profile.portfolio.length > 0 ? (
-                <Fragment>
-                  <h5 className="profile-header">Portfolios</h5>
-                  {profile.portfolio.map((portfolio) => (
-                    <ProfilePortfolio
-                      key={portfolio._id}
-                      portfolio={portfolio}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h5 className="profile-header">No portfolio to list</h5>
-              )}
-             <div className="profile-hobby">
-             {profile.hobbies.length > 0 ? (
-              <Fragment>
-                <h5 className="profile-header">Hobbies</h5>
-                {profile.hobbies.map((hobby) => (
-                  <ProfileHobbies key={hobby._id} hobbies={hobby} />
-                ))}
-              </Fragment>
-            ) : (
-              <h5 className="profile-header">No hobby to list</h5>
-            )}
-             </div>
+            <div className="reference">
+              {' '}
+              <h5 className="profile-header">References</h5>
+              <div className="profile-body ">
+                {profile.reference.length > 0 ? (
+                  <Fragment>
+                    {profile.reference.map((reference) => (
+                      <ProfileReference
+                        key={reference._id}
+                        reference={reference}
+                      />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No reference to list</h5>
+                )}
+              </div>
             </div>
-
-            <div className="profile-reference">
-              {profile.reference.length > 0 ? (
-                <Fragment>
-                  <h5 className="profile-header">References</h5>
-                  {profile.reference.map((reference) => (
-                    <ProfileReference
-                      key={reference._id}
-                      reference={reference}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h5 className="profile-header">No reference to list</h5>
-              )}
+            <div className="portfolios">
+              {' '}
+              <h5 className="profile-header">Portfolios</h5>
+              <div className="profile-body ">
+                {profile.portfolio.length > 0 ? (
+                  <Fragment>
+                    {profile.portfolio.map((portfolio) => (
+                      <ProfilePortfolio
+                        key={portfolio._id}
+                        portfolio={portfolio}
+                      />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No portfolio to list</h5>
+                )}
+              </div>
+            </div>
+            <div className="hobby">
+              {' '}
+              <h5 className="profile-header">Hobbies</h5>
+              <div className="profile-body ">
+                {profile.hobbies.length > 0 ? (
+                  <Fragment>
+                    {profile.hobbies.map((hobby) => (
+                      <ProfileHobbies key={hobby._id} hobbies={hobby} />
+                    ))}
+                  </Fragment>
+                ) : (
+                  <h5>No hobby to list</h5>
+                )}
+              </div>
             </div>
           </div>
         </Fragment>

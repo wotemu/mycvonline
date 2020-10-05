@@ -10,7 +10,7 @@ const Hobbies = ({ hobbies, deleteHobbies }) => {
       <td>
         <button
           onClick={() => deleteHobbies(ref._id)}
-          className="btn btn-danger btn-sm"
+          className="btn-small btn-red"
         >
           <i className="fas fa-times fa-sm"></i>
         </button>

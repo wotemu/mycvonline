@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProfileReference = ({ reference: { name, email, position } }) => (
-  <div className="profile-experience-detail ">
-    <p>
+  <div className=" ">
+    <h6>
       {name}, {position}
-    </p>
+    </h6>
     <p>
       <i className="fas fa-envelope"></i>
       {email}
     </p>{' '}
+    <hr />
   </div>
 );
 

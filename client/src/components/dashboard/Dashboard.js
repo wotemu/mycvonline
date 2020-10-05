@@ -50,10 +50,7 @@ const Dashboard = ({
               <Reference reference={profile.reference} />
             </div>
             <div className="">
-              <button
-                className=" btn btnDanger"
-                onClick={() => deleteAccount()}
-              >
+              <button className=" btn btn-red" onClick={() => deleteAccount()}>
                 <i className="fas fa-times" /> Account
               </button>
             </div>
