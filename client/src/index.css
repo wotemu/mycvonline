@@ -581,7 +581,7 @@ p {
 .details-blogs-boxes {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 50% 50%;
 }
 
 .details-blogs-box h5 {
@@ -1176,7 +1176,7 @@ input {
   .details-blogs-boxes {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 100%;
   }
 
   .feeds-page-post-form {
@@ -1284,7 +1284,7 @@ input {
   .details-blogs-boxes {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    grid-template-columns: 100%;
   }
 }
 
@@ -1312,6 +1312,6 @@ input {
   .details-blogs-boxes {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: 100%;
   }
 }
