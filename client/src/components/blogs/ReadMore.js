@@ -5,7 +5,7 @@ import truncate from 'lodash/truncate';
 
 // Approximated collapsed size so that there are ~three lines of text
 // in the desktop layout in the host section of the ListingPage.
-const BLOG_COLLAPSED_LENGTH = 30;
+const BLOG_COLLAPSED_LENGTH = 25;
 
 const truncated = (s) => {
   return truncate(s, {

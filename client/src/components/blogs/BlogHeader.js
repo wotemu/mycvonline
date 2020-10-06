@@ -16,7 +16,7 @@ const BlogHeader = ({ getBlogs, blog: { blogs } }) => {
     <Carousel infiniteLoop useKeyboardArrows autoPlay showThumbs={false}>
       {blogs.map((blog) => (
         <div key={blog._id}>
-          <img src={blog.filePath} className="img-fluid" alt="blogImage" />
+          <img src={blog.filePath} className="" alt="blogImage" />
           <Link to={`/blog/${blog._id}`}>
             <h5> {blog.title}</h5>
           </Link>
