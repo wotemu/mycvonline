@@ -237,7 +237,7 @@ nav ul li a:hover {
   --primary: #ddd;
   --dark: #333;
   --light: #fff;
-  --shadow: 0 1px 5px rgb(104, 104, 104, 0.8);
+  --shadow: 0 1px 5px rgba(211, 207, 207, 0.8);
   --topBar: #009688;
 }
 
@@ -258,16 +258,16 @@ body {
   grid-gap: 20px;
 }
 
+/* 
 .nav-wrapper {
   width: 100%;
   position: -webkit-sticky;
-  /* Safari */
+  
   position: sticky;
   top: 0;
   background-color: var(--light);
 }
-
-/* NAVIGATION */
+ */
 
 nav {
   background-color: #fff;
@@ -292,6 +292,7 @@ nav ul li a:hover {
 
 .dropdown-menu-link {
   font-size: 12px;
+  color: var(--dark);
 }
 
 .grad-bar {
@@ -355,14 +356,15 @@ nav ul li a:hover {
 .top-container {
   display: grid;
   grid-gap: 20px;
-  grid-template-areas: 'showcase showcase top-box-a''showcase showcase top-box-b';
+  grid-template-areas: 'showcase showcase top-box-a' 'showcase showcase top-box-b';
 }
 
 /* showcase*/
 .showcase {
   grid-area: showcase;
   min-height: 400px;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)),
+    url('./img/showcase.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   background-color: rgba(0, 0, 0, 0.7);
@@ -418,10 +420,16 @@ nav ul li a:hover {
 
 .btn-red {
   background: red;
+  color: var(--white);
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 5px;
+  border: 0;
+  border-radius: 3px;
 }
 
 .btn-small {
-  color: var(--white);
+  color: var(--dark);
   padding: 5px 10px;
   text-decoration: none;
   margin: 5px;
@@ -431,7 +439,7 @@ nav ul li a:hover {
 
 /*top box*/
 .top-box {
-  background: var(--primary);
+  background: var(--dark);
   display: grid;
   align-items: center;
   justify-items: center;
@@ -596,7 +604,7 @@ p {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 20px;
   border-top: 1px solid #000;
   text-align: left;
@@ -611,7 +619,7 @@ p {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 20px;
   border-top: 1px solid #000;
 }
@@ -639,13 +647,13 @@ p {
 /*feeds-page*/
 .feeds-page {
   display: grid;
-  grid-gap: 30px;
-  padding-top: 50px;
+  grid-gap: 20px;
+  /*  padding-top: 50px; */
   grid-template-columns: 20% 60% 20%;
 }
 
 .feeds-page-item p {
-  padding: 20px;
+  padding: 10px;
   text-align: justify;
 }
 
@@ -653,19 +661,17 @@ p {
   width: 100%;
 }
 
-
 .feeds-item-container {
   border: 1px solid lightgray;
-  padding: 20px;
-
+  padding: 10px;
   margin-top: 20px;
 }
 
 .post-avatar span {
-  padding-left: 10px;
+  padding-right: 3px;
   color: var(--dark);
   font-style: italic;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .avatar {
@@ -675,7 +681,7 @@ p {
 }
 
 .post-main-body {
-  padding: 20px;
+  padding: 10px;
 }
 
 .showMore-blue {
@@ -683,7 +689,7 @@ p {
 }
 
 .comment-form-feeds {
-  border: 1px darkgray solid;
+  border-top: 1px darkgray solid;
 }
 
 .feeds-page-post-form {
@@ -707,15 +713,11 @@ p {
 .boxes {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 .box-follow-us {
   padding: 20px;
-}
-
-.box h5 {
-  color: var(--dark);
 }
 
 .box {
@@ -724,18 +726,25 @@ p {
   box-shadow: var(--shadow);
 }
 
+.box .btn-small {
+  background: var(--topBar);
+  color: var(--light);
+}
+
 .box p {
+  color: var(--dark);
+  font-size: 14px;
+  padding-top: 0px;
+}
+
+.box h6 {
   color: var(--dark);
 }
 
-.box .btn {
-  background: var(--topBar);
-}
-
 .box img {
-  width: 100%;
-  box-shadow: var(--shadow);
-  margin-bottom: 10px;
+  width: 70%;
+  border-radius: 50%;
+  padding-top: 5px;
 }
 
 /*info*/
@@ -772,6 +781,7 @@ p {
   align-items: center;
   justify-content: center;
   background: var(--topBar);
+  -bottom: 20px;
   margin-bottom: 20px;
 }
 
@@ -779,7 +789,6 @@ p {
 p {
   color: var(--light);
   padding: 5px;
-
 }
 
 .section-portfolio {
@@ -788,13 +797,11 @@ p {
   align-items: center;
   justify-content: center;
   background: var(--topBar);
-
 }
 
 .section-portfolio h3 {
   color: var(--light);
   padding: 5px;
-
 }
 
 /*portfolio*/
@@ -847,11 +854,11 @@ h5 {
   color: var(--light);
 }
 
-.register-form form>p {
+.register-form form > p {
   color: var(--light);
 }
 
-.register-form form>input {
+.register-form form > input {
   background: var(--topBar);
 }
 
@@ -908,20 +915,25 @@ h5 {
 
 .profile-detail {
   display: grid;
-  grid-gap: 20px;
-  grid-template-areas: 'header personal personal about about''header experience experience education education''header skills skills reference reference''header portfolios portfolios hobby hobby';
+  grid-gap: 30px;
+  grid-template-areas:
+    'header about about' 'header experience experience' 'header education education'
+    'header skills  skills' 'header reference reference' 'header portfolios portfolios' 'header hobby hobby';
   padding-top: 10px;
 }
 
-/* header*/
 .header {
   grid-area: header;
-  background-color: var(--topBar);
+  background-color: var(--dark);
 }
 
-/* personal*/
-.personal {
-  grid-area: personal;
+.personal-info {
+  padding: 20px !important;
+  border-bottom: 1px solid lightgray;
+}
+
+.personal-info p {
+  text-align: justify;
 }
 
 .profile-body {
@@ -930,12 +942,13 @@ h5 {
 
 .profile-body h5 {
   color: var(--dark);
+  text-align: left;
 }
 
 .profile-body p {
   text-align: justify;
-  line-height: 1.4;
   color: var(--dark);
+  font-size: 18px;
 }
 
 .profile-body li {
@@ -948,10 +961,10 @@ h5 {
 }
 
 .profile-body-header-content {
-  background-color: var(--topBar);
   color: var(--light);
   padding: 10px;
   text-align: center;
+  border-bottom: 1px solid lightgray;
 }
 
 .profile-body-header-content a {
@@ -959,7 +972,6 @@ h5 {
   padding-left: 3px;
   padding-right: 3px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--light);
 }
 
 .profile-body-icon {
@@ -1003,9 +1015,8 @@ h5 {
 }
 
 .profile-header {
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  text-align: justify;
+  padding: 10px;
   background-color: var(--topBar) !important;
   color: var(--light) !important;
   border-top-left-radius: 3px;
@@ -1131,6 +1142,9 @@ input {
 /* Mobile Devices - Phones/Tablets */
 
 @media only screen and (max-width: 720px) {
+  body {
+    margin: 0px 20px 30px 20px;
+  }
   .top-container {
     grid-template-areas:
       'showcase showcase'
@@ -1138,15 +1152,25 @@ input {
   }
 
   .profile-detail {
-    grid-template-areas: 'header personal'' header about'' header experience''header education''header skills''header portfolios''header hobby''header reference';
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas:
+      'header about' 'header experience' 'header education '
+      'header skills ' 'header reference' 'header portfolios' 'header hobby';
     padding-top: 10px;
   }
 
+  .profile-body {
+    padding: 20px 0 20px 0;
+  }
+
   .feeds-page {
-    display: grid;
     grid-gap: 0px;
-    padding-top: 50px;
     grid-template-columns: 0% 100% 00%;
+  }
+
+  .feeds-page-item p {
+    padding: 10px 5px;
   }
 
   .blogs-header-content {
@@ -1161,7 +1185,9 @@ input {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 
-
+  .feeds-page-post-form {
+    padding: 20px 5px;
+  }
 
   .showcase h1 {
     font-size: 2.5rem;
@@ -1208,9 +1234,16 @@ input {
   .search-input {
     display: none;
   }
+
+  .feeds-item-container {
+    padding: 10px 5px;
+  }
 }
 
 @media (max-width: 500px) {
+  body {
+    margin: 0px 20px 30px 20px;
+  }
   .top-container {
     grid-template-areas:
       'showcase'
@@ -1218,10 +1251,22 @@ input {
       'top-box-b';
   }
 
+  .profile-detail {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas:
+      'header' 'about' 'experience' 'education '
+      'skills ' 'reference' 'portfolios' 'hobby';
+    padding-top: 10px;
+  }
+
+  .profile-body {
+    padding: 20px 0 20px 0;
+  }
   .feeds-page {
     display: grid;
     grid-gap: 0px;
-    padding-top: 50px;
+    /*  padding-top: 50px; */
     grid-template-columns: 0% 100% 00%;
   }
 
@@ -1231,15 +1276,17 @@ input {
     grid-template-columns: 'blogs-header-body';
   }
 
-  .profile-detail {
-    grid-template-areas: 'header''personal''about''experience''education''skills''portfolios''hobby''reference';
-    padding-top: 10px;
-  }
-
-
   .blogs-header-body {
     grid-area: blogs-header-body;
     max-width: 350px;
     padding-bottom: 20px;
+  }
+
+  .feeds-item-container {
+    padding: 10px 5px;
+  }
+
+  .feeds-page-post-form {
+    padding: 20px 5px;
   }
 }

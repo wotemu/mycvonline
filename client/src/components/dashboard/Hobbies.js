@@ -8,10 +8,7 @@ const Hobbies = ({ hobbies, deleteHobbies }) => {
     <tr key={ref._id}>
       <td>{ref.hobby}</td>
       <td>
-        <button
-          onClick={() => deleteHobbies(ref._id)}
-          className="btn-small btn-red"
-        >
+        <button onClick={() => deleteHobbies(ref._id)} className="btn-red">
           <i className="fas fa-times fa-sm"></i>
         </button>
       </td>

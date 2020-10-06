@@ -28,18 +28,18 @@ const Landing = ({ isAuthenticated }) => {
         </header>
 
         <div class="top-box top-box-a">
-          <h4>Membership</h4>
-          <p class="price">Free</p>
-          <Link to="/register" className="btn btn-lg btn-info">
-            <i className="fas fa-user-plus"></i> Sign Up
+          <h4>Feeds</h4>
+
+          <Link className="nav-link" to="/feed">
+            <i className="fas fa-book fa-3x"></i>
           </Link>
         </div>
 
         <div class="top-box top-box-b">
-          <h4>Pro Membership</h4>
-          <p class="price">Again Free</p>
-          <Link to="/register" className="btn btn-lg btn-info">
-            <i className="fas fa-user-plus"></i> Sign Up
+          <h4>Blogs</h4>
+
+          <Link className="nav-link" to="/blogs">
+            <i className="fas fa-rss fa-3x"></i>
           </Link>
         </div>
       </section>

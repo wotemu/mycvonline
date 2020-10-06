@@ -78,7 +78,7 @@ const PostItem = ({
                   <button
                     onClick={() => deletePost(_id)}
                     type="button"
-                    className="btn-small btn-red"
+                    className=" btn-red"
                   >
                     <i className="fas fa-times fa-sm"></i>
                   </button>
@@ -101,7 +101,7 @@ const PostItem = ({
         {displayCommentForm && (
           <div>
             <CommentForm postId={_id} />
-            <div className="mb-3 pl-2">
+            <div className="">
               <button
                 type="button"
                 onClick={() => {

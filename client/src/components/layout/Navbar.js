@@ -57,10 +57,10 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
           </Link>
 
           <Link className="nav-link pl-2 " to="">
-            <p onClick={logout}>
+            <span onClick={logout}>
               <i className="fas fa-sign-out-alt"></i>{' '}
               <span className="dropdown-menu-link"> Logout</span>
-            </p>
+            </span>
           </Link>
         </div>
       </li>

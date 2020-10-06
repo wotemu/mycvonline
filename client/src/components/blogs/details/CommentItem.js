@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { deleteComment } from '../../../actions/blogActions';
+import AvatarImage from '../../../img/avatar.jpg';
 
 const CommentItem = ({
   postId,
-  comment: { _id, text, name, avatar, user, date },
+  comment: { _id, text, name, user, date },
   auth,
   deleteComment
 }) => (
@@ -16,7 +17,7 @@ const CommentItem = ({
     <p>
       {' '}
       <Link to={`/profile/${user}`}>
-        <img className="" src={avatar} alt="" />
+        <img className="" src={AvatarImage} alt="" />
         <span>{name}</span>
       </Link>
       <span className="" style={{ fontSize: '12px' }}>
@@ -27,7 +28,7 @@ const CommentItem = ({
           <button
             onClick={() => deleteComment(postId, _id)}
             type="button"
-            className="btn-red btn-small"
+            className="btn-red "
           >
             <i className="fas fa-times fa-sm"></i>
           </button>

@@ -37,7 +37,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <div className="reigister">
       <div className="register-form">
         <h2>Sign Up</h2>
-        <h5>Create account</h5>
+        <h5>Create your account here</h5>
         <form noValidate onSubmit={onSubmit}>
           <TextFieldGroup
             placeholder="Name"

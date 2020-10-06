@@ -6,12 +6,7 @@ class ProfilePersonalinfo extends Component {
 
     return (
       <div>
-        <div className="">
-          <p>
-            {' '}
-            <i className="fas fa-user  profile-body-icon"></i>{' '}
-            {profile.user.name}
-          </p>
+        <div className="personal-info">
           <p>
             {' '}
             <i className="fas fa-address-card  profile-body-icon"></i>{' '}

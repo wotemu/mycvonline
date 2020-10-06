@@ -10,6 +10,7 @@ import Reference from './Reference';
 import Skills from './Skills';
 import Hobbies from './Hobbies';
 import Portfolio from './Portfolio';
+import AvatarImage from '../../img/avatar.jpg';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -30,7 +31,7 @@ const Dashboard = ({
             src={
               profile && profile.filePath
                 ? profile && profile.filePath
-                : user && user.avatar
+                : AvatarImage
             }
             alt=""
           />
@@ -50,7 +51,7 @@ const Dashboard = ({
               <Reference reference={profile.reference} />
             </div>
             <div className="">
-              <button className=" btn btn-red" onClick={() => deleteAccount()}>
+              <button className=" btn-red" onClick={() => deleteAccount()}>
                 <i className="fas fa-times" /> Account
               </button>
             </div>

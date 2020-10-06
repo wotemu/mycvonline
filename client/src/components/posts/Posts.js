@@ -21,7 +21,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
         <input
           onClick={() => toggleDisplayFeeds(!displayFeeds)}
           placeholder="Say something..."
-          className="form-control disabled"
+          className="form-control"
         />
 
         {displayFeeds && <PostForm />}

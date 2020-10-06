@@ -41,13 +41,10 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
           <div className="profile-detail">
             <div className="header">
               <ProfileHeader profile={profile} />
+              <ProfilePersonalinfo profile={profile} />
             </div>
-            <div className="personal">
-              <h5 className="profile-header">Personal Information</h5>
-              <div className="profile-body">
-                <ProfilePersonalinfo profile={profile} />
-              </div>
-            </div>
+            <div className="placeholder"></div>
+
             <div className="about">
               <h5 className="profile-header">
                 {' '}

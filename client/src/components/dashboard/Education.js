@@ -14,10 +14,7 @@ const Education = ({ education, deleteEducation }) => {
         {edu.to === null ? ' Now' : <Moment format="MMM YYYY">{edu.to}</Moment>}
       </td>
       <td>
-        <button
-          onClick={() => deleteEducation(edu._id)}
-          className="btn-small btn-red"
-        >
+        <button onClick={() => deleteEducation(edu._id)} className="btn-red">
           <i className="fas fa-times fa-sm"></i>
         </button>
       </td>

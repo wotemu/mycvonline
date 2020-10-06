@@ -16,8 +16,7 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className="post-comment-body">
-      <h5>Make a comment...</h5>
-      <form onSubmit={onSubmit} >
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <TextAreaFieldGroup
             placeholder="Add a comment..."

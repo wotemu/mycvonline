@@ -70,7 +70,7 @@ const BlogItem = ({
                   <button
                     onClick={() => deleteBlog(_id)}
                     type="button"
-                    className="btn-small btn-red"
+                    className=" btn-red"
                   >
                     <i className="fas fa-times fa-sm"></i>
                   </button>

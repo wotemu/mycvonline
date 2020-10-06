@@ -9,10 +9,7 @@ const Skills = ({ skills, deleteSkills }) => {
       <td>{skill.name}</td>
 
       <td>
-        <button
-          onClick={() => deleteSkills(skill._id)}
-          className="btn-small btn-red"
-        >
+        <button onClick={() => deleteSkills(skill._id)} className="btn-red">
           <i className="fas fa-times fa-sm"></i>
         </button>
       </td>
