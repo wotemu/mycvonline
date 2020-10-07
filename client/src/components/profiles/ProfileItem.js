@@ -14,7 +14,11 @@ const ProfileItem = ({
   return (
     <Fragment>
       <Link to={`/profile/${_id}`}>
-        <img src={isEmpty(filePath) ? AvatarImg : filePath} alt="" />
+        <img
+          src={isEmpty(filePath) ? AvatarImg : filePath}
+          alt=""
+          className="img-fluid"
+        />
       </Link>
       <h6>{name}</h6>
       <p>{status} </p>

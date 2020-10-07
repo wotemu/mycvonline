@@ -54,7 +54,10 @@ const Login = ({ login, isAuthenticated }) => {
             Submit
           </button>
           <p className="">
-            Don't have an account? <Link to="/register">Sign Up</Link>
+            Don't have an account?{' '}
+            <Link to="/register" className="link-to-register">
+              Sign Up
+            </Link>
           </p>
         </form>
       </div>

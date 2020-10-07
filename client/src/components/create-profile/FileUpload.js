@@ -51,7 +51,7 @@ const FileUpload = (props) => {
           height: filePath.length > 0 ? '140px' : '70px'
         }}
       >
-        <img src={filePath} alt="" />
+        <img src={filePath} alt="" className="img-fluid" />
       </div>
     </div>
   );

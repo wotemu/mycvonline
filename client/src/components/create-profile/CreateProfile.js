@@ -60,7 +60,7 @@ class CreateProfile extends Component {
     } else if (this.state.pagetwo === true) {
       this.setState({
         pagetwo: !this.state.pagetwo,
-        pagethree: !this.state.three
+        pagethree: !this.state.pagethree
       });
     }
   };
@@ -126,197 +126,183 @@ class CreateProfile extends Component {
     } = this.state;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-8 col-md-10 col-sm-12 m-auto">
-            <div className="p-3 create-profile">
-              <h3 className="text-center p-2">Create Your Profile</h3>
-              <form onSubmit={this.onSubmit}>
-                {pageone && (
-                  <div>
-                    <div className="post-form mb-3">
-                      <div className="card card-info">
-                        <h5 className="p-1  formHeader text-white">
-                          Personal Information
-                        </h5>
-                        <div className="card-body">
-                          <TextFieldGroup
-                            placeholder="Your address"
-                            name="address"
-                            value={address}
-                            onChange={this.onChange}
-                            info="Write your address here"
-                          />
-                          <TextFieldGroup
-                            placeholder="Your email"
-                            name="email"
-                            value={email}
-                            onChange={this.onChange}
-                            info="Write your email here"
-                          />
-                          <TextFieldGroup
-                            placeholder="Your phone"
-                            name="phone"
-                            value={phone}
-                            onChange={this.onChange}
-                            info="Write your phone number here"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-                {pagetwo && (
-                  <div className="card card-info mb-3">
-                    <p className="p-2  formHeader text-white">
-                      Language Skills, Professional Status and Bio
-                    </p>
-                    <div className="card-body">
-                      <div className="post-form mb-3">
-                        <TextFieldGroup
-                          placeholder="Language skill"
-                          name="language"
-                          value={language}
-                          onChange={this.onChange}
-                          info="Write the list of languages you speak(comma separated)"
-                        />
-                      </div>
-                      <SelectListGroup
-                        placeholder="Status"
-                        name="status"
-                        value={status}
-                        onChange={this.onChange}
-                        options={options}
-                        info="Give us an idea of where you are at in your career"
-                      />
-                      <TextAreaFieldGroup
-                        placeholder="Short Bio"
-                        name="bio"
-                        value={bio}
-                        onChange={this.onChange}
-                        info="Tell us a little about yourself"
-                      />
-                    </div>
-                  </div>
-                )}
-                {pagethree && (
-                  <div className="card card-info mb-2">
-                    <h6 className="p-2  formHeader text-white">
-                      Profile Image and Links to Social Websites
-                    </h6>
-                    <div className="card-body">
-                      <p className="p-1  bg-dark text-white">Upload an Image</p>
-                      <div className="p-2">
-                        <FileUpload refreshFunction={this.updateImages} />
-                      </div>
+      <div className="reigister">
+        <div className="register-form">
+          <h2 className="">Edit Your Profile</h2>
+          <form onSubmit={this.onSubmit}>
+            {pageone && (
+              <div className="address-info">
+                <label htmlFor="address">Address: </label>
+                <TextFieldGroup
+                  placeholder="Street address, zip code, city"
+                  name="address"
+                  value={address}
+                  onChange={this.onChange}
+                  info=""
+                />
+                <label htmlFor="email">Email</label>
+                <TextFieldGroup
+                  placeholder="Your email"
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
+                />
+                <label htmlFor="phone">Phone: </label>
+                <TextFieldGroup
+                  placeholder="Your phone"
+                  name="phone"
+                  value={phone}
+                  onChange={this.onChange}
+                />
+                <label htmlFor="language">Language Skills: </label>
+                <TextFieldGroup
+                  placeholder="Language skill (comma separated list)"
+                  name="language"
+                  value={language}
+                  onChange={this.onChange}
+                />
+                <label htmlFor="status">Professional Status: </label>
 
-                      <InputGroup
-                        placeholder="Website"
-                        name="website"
-                        icon="fas fa-globe"
-                        value={website}
-                        onChange={this.onChange}
-                        info="Could be your own website"
-                        className="form-control input-sm"
-                      />
+                <SelectListGroup
+                  placeholder="Your current career status"
+                  name="status"
+                  value={status}
+                  onChange={this.onChange}
+                  options={options}
+                />
+              </div>
+            )}
+            {pagetwo && (
+              <div className="address-info">
+                <label htmlFor="bio">Tell us a little about yourself: </label>
 
-                      <InputGroup
-                        placeholder="Linkedin Profile URL"
-                        name="linkedin"
-                        icon="fab fa-linkedin"
-                        value={linkedin}
-                        onChange={this.onChange}
-                      />
+                <TextAreaFieldGroup
+                  placeholder="Short Bio"
+                  name="bio"
+                  value={bio}
+                  onChange={this.onChange}
+                />
 
-                      <InputGroup
-                        placeholder="Github Profile URL"
-                        name="github"
-                        icon="fab fa-github"
-                        value={github}
-                        onChange={this.onChange}
-                      />
-                    </div>
-
-                    <div className="pl-3 pb-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          this.setState((prevState) => ({
-                            displaySocialInputs: !prevState.displaySocialInputs
-                          }));
-                        }}
-                        className="btn btn-sm  formHeader"
-                      >
-                        Social Network Links
-                      </button>
-                      <span className="text-muted pl-2">Optional</span>
-                    </div>
-                    {displaySocialInputs && (
-                      <div className="pl-3 pr-3">
-                        <InputGroup
-                          placeholder="Twitter Profile URL"
-                          name="twitter"
-                          icon="fab fa-twitter"
-                          value={twitter}
-                          onChange={this.onChange}
-                        />
-
-                        <InputGroup
-                          placeholder="Facebook Page URL"
-                          name="facebook"
-                          icon="fab fa-facebook"
-                          value={facebook}
-                          onChange={this.onChange}
-                        />
-
-                        <InputGroup
-                          placeholder="YouTube Channel URL"
-                          name="youtube"
-                          icon="fab fa-youtube"
-                          value={youtube}
-                          onChange={this.onChange}
-                        />
-
-                        <InputGroup
-                          placeholder="Instagram Page URL"
-                          name="instagram"
-                          icon="fab fa-instagram"
-                          value={instagram}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                    )}
-                  </div>
-                )}
-                <div className="mt-3 text-center">
-                  <button
-                    type="button"
-                    onClick={this.prevPage}
-                    disabled={pageone ? true : false}
-                    className="btn btn-info  btn-sm"
-                  >
-                    previous
-                  </button>{' '}
-                  <button
-                    type="button"
-                    onClick={this.nextPage}
-                    disabled={pagethree ? true : false}
-                    className="btn btn-info  btn-sm"
-                  >
-                    next
-                  </button>{' '}
-                  <button
-                    type="submit"
-                    onClick={this.togglePage}
-                    disabled={pagethree ? false : true}
-                    className="btn btn-info  btn-sm"
-                  >
-                    Submit
-                  </button>
+                <div className="address-info">
+                  <p>Upload profile Image</p>
+                  <FileUpload refreshFunction={this.updateImages} />
                 </div>
-              </form>
+              </div>
+            )}
+            {pagethree && (
+              <div>
+                <label htmlFor="website">Link to your Websites: </label>
+
+                <InputGroup
+                  placeholder="Website"
+                  name="website"
+                  icon="fas fa-globe"
+                  value={website}
+                  onChange={this.onChange}
+                  className="form-control"
+                />
+
+                <label htmlFor="linkedin">
+                  Link to your Linkedin Profile URL:{' '}
+                </label>
+                <InputGroup
+                  placeholder="Linkedin Profile URL"
+                  name="linkedin"
+                  icon="fab fa-linkedin"
+                  value={linkedin}
+                  onChange={this.onChange}
+                />
+
+                <label htmlFor="github">
+                  Link to your Github Profile URL:{' '}
+                </label>
+                <InputGroup
+                  placeholder="Github Profile URL"
+                  name="github"
+                  icon="fab fa-github"
+                  value={github}
+                  onChange={this.onChange}
+                />
+
+                <p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.setState((prevState) => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="btn-small"
+                  >
+                    Social Network Links
+                  </button>
+                  <span className="">Optional</span>
+                </p>
+                {displaySocialInputs && (
+                  <div className="address-info">
+                    <InputGroup
+                      placeholder="Twitter Profile URL"
+                      name="twitter"
+                      icon="fab fa-twitter"
+                      value={twitter}
+                      onChange={this.onChange}
+                    />
+
+                    <InputGroup
+                      placeholder="Facebook Page URL"
+                      name="facebook"
+                      icon="fab fa-facebook"
+                      value={facebook}
+                      onChange={this.onChange}
+                    />
+
+                    <InputGroup
+                      placeholder="YouTube Channel URL"
+                      name="youtube"
+                      icon="fab fa-youtube"
+                      value={youtube}
+                      onChange={this.onChange}
+                    />
+
+                    <InputGroup
+                      placeholder="Instagram Page URL"
+                      name="instagram"
+                      icon="fab fa-instagram"
+                      value={instagram}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="border-top-to-btn">
+              <button
+                type="button"
+                onClick={this.prevPage}
+                disabled={pageone ? true : false}
+                className="btn-small"
+              >
+                Previous
+              </button>{' '}
+              <button
+                type="button"
+                onClick={this.nextPage}
+                disabled={pagethree ? true : false}
+                className="btn-small"
+              >
+                Next
+              </button>{' '}
+              <button
+                type="submit"
+                onClick={this.togglePage}
+                disabled={pagethree ? false : true}
+                className="btn-small"
+              >
+                Submit
+              </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );

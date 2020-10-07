@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import isEmpty from '../../validation/is-empty';
+import AvatarImage from '../../img/avatar.jpg';
 
 class ProfileHeader extends Component {
   render() {
     const { profile } = this.props;
-    let profileImage;
-    if (profile.filePath) {
-      profileImage = <img src={profile.filePath} alt="" />;
-    } else {
-      profileImage = <img src={profile.user.avatar} alt="" />;
-    }
+
     return (
       <div className="profile-body-header">
-        {profileImage}
+        <img
+          src={profile.filePath ? profile.filePath : AvatarImage}
+          alt=""
+          className="img-fluid"
+        />
         <div className="profile-body-header-content">
           <h4 className="">{profile.user.name}</h4>
           <p className="">{profile.status} </p>

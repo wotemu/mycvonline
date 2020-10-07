@@ -12,8 +12,9 @@ const Landing = ({ isAuthenticated }) => {
     <Fragment>
       <section className="top-container">
         <header className="showcase">
-          <h1>Create your resume</h1>
-          <h3> Share the link to recruiters</h3>
+          <h1>CV-Online</h1>
+          <h3>Create your resume</h3>
+          <h5> Share the link to recruiters</h5>
           <p> Create and read feeds</p>
           <p>
             <Link to="/register" className="btn btn-lg btn-info">
@@ -27,7 +28,7 @@ const Landing = ({ isAuthenticated }) => {
           </p>
         </header>
 
-        <div class="top-box top-box-a">
+        <div className="top-box top-box-a">
           <h4>Feeds</h4>
 
           <Link className="nav-link" to="/feed">
@@ -35,7 +36,7 @@ const Landing = ({ isAuthenticated }) => {
           </Link>
         </div>
 
-        <div class="top-box top-box-b">
+        <div className="top-box top-box-b">
           <h4>Blogs</h4>
 
           <Link className="nav-link" to="/blogs">
@@ -100,16 +101,35 @@ const Landing = ({ isAuthenticated }) => {
       </section>
       <section className="info">
         <img src="../../img/showcase.jpg" alt="" />
-        <h2>About Us</h2>
+        <h2>About CV-Online</h2>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui quasi
-          debitis nam odit modi culpa aliquid animi veritatis ab architecto
-          asperiores illum ipsa, eius mollitia accusantium necessitatibus
-          laborum minima. Commodi?
+          CV-online is developed by Tamire. It is your online destination for
+          creating and sharing your resumes to recruiters.
         </p>
-        <Link to="/login" className="btn btn-lgbtn-info  ">
-          <i className="fas fa-sign-in-alt"></i> Login
-        </Link>
+        <p>
+          You can read, create and share your views in the blogs feeds section
+          of the app.
+        </p>
+        <p>Enjoy the app reading feeds, user comments, and other services.</p>
+
+        <h3>Interested?</h3>
+        <p>Leave us your e-mail address and we’ll keep you up to date.</p>
+        <p>
+          <Link className="btn" to="/register">
+            <i className="fas fa-user-plus"></i> Sign Up
+          </Link>
+        </p>
+
+        <p>
+          A professional offering services listed above and interested in
+          featuring on cv-online app?
+        </p>
+        <p>
+          <Link to="/login" className="btn ">
+            <i className="fas fa-sign-in-alt"></i> Login
+          </Link>{' '}
+        </p>
+        <p> You can also checkout our Facebook and Twitter</p>
       </section>
 
       <section className="section-portfolio">
