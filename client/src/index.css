@@ -479,8 +479,36 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
-.box-follow-us {
+.section-About-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--topBar);
+  color: var(--light);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.box-follow {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border-bottom: 1px solid var(--light);
+  margin-bottom: 20px;
+}
+
+
+.box-follow a {
   padding: 20px;
+}
+
+
+footer img {
+  padding-bottom: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
 }
 
 .box {
@@ -512,31 +540,41 @@ p {
 }
 
 /*info*/
-.info {
-  background: var(--primary);
-  box-shadow: var(--shadow);
+
+.section-info {
   display: grid;
-  grid-template-areas: repeat(2, 1fr);
+  grid-gap: 20px;
+  grid-template-columns: 50% 50%;
+  box-shadow: var(--shadow);
   padding: 30px;
 }
 
-.info p {
-  color: var(--dark);
+.box-about-us {
+  background: #b8860b;
+  padding: 20px;
+  min-height: 280px;
+  border-radius: 5px;
+
+}
+
+.box-about-us p {
   text-align: justify;
-}
-
-.section-follow-us {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--topBar);
-}
-
-.section-follow-us h3 {
   color: var(--light);
-  padding: 5px;
+  font-size: 18px;
 }
+
+.box-about-us h3 {
+  padding: 10px;
+  color: var(--light);
+  background: var(--topBar);
+  border-radius: 3px;
+}
+
+.headline-profiles input {
+  min-width: 250px;
+  border-radius: 3px;
+}
+
 
 .headline-profiles {
   display: flex;
@@ -544,8 +582,8 @@ p {
   align-items: center;
   justify-content: center;
   background: var(--topBar);
-  -bottom: 20px;
   margin-bottom: 20px;
+  border-radius: 3px;
 }
 
 .headline-profiles h2,
@@ -1044,6 +1082,11 @@ input {
       'top-box-b';
   }
 
+  .section-info {
+    grid-template-columns: 100%;
+    box-shadow: var(--shadow);
+  }
+
   .profile-detail {
     display: grid;
     grid-gap: 30px;
@@ -1092,6 +1135,11 @@ input {
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   body {
     margin: 0px 10px 20px 10px;
+  }
+
+  .section-info {
+    grid-template-columns: 100%;
+    box-shadow: var(--shadow);
   }
 
   .blogs-header-body {

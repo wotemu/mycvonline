@@ -23,6 +23,7 @@ import Blogs from './blogs/Blogs';
 import BlogForm from './blogs/BlogForm';
 import Blog from './blogs/details/DetailBlog';
 import NotFound from './not-found/NotFound';
+import Search from './common/searchBox';
 
 const Routes = (props) => {
   return (
@@ -32,6 +33,7 @@ const Routes = (props) => {
       <Route exact path="/login" component={Login} />
       <Route exact path="/profiles" component={Profiles} />
       <Route exact path="/profile/:id" component={Profile} />
+      <Route exact path="/search" component={Search} />
       <Switch>
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/create-profile" component={CreateProfile} />

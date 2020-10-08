@@ -32,12 +32,12 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
       )}
     </Fragment>
   );
+
   return (
     <Fragment>
       <section className="headline"></section>
       <section className="headline-profiles">
         <h2>Profiles Available</h2>
-        <p>Click on the link to view the details of the profile!</p>
       </section>
       <section className="boxes">{profileItems}</section>
     </Fragment>

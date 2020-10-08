@@ -85,6 +85,11 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
           <i className="fas fa-sign-in-alt"></i> Login
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/search">
+          <i className="fas fa-search"></i> Search
+        </Link>
+      </li>
     </ul>
   );
 
