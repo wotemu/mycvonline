@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import moment from 'moment';
 import { deleteExperience } from '../../actions/profileActions';
 
 class Experience extends Component {
@@ -14,12 +15,13 @@ class Experience extends Component {
       <tr key={exp._id}>
         <td>{exp.company}</td>
         <td>{exp.title}</td>
+
         <td>
-          <Moment format="MMM YYYY">{exp.from}</Moment> - &nbsp;
+          <Moment format="MMM YYYY">{moment.utc(exp.from)}</Moment> -{' '}
           {exp.to === null ? (
             ' Now'
           ) : (
-            <Moment format="MMM YYYY">{exp.to}</Moment>
+            <Moment format="MMM YYYY">{moment.utc(exp.to)}</Moment>
           )}
         </td>
         <td>

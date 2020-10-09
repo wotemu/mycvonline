@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import moment from 'moment';
 
 const ProfileEducation = ({
   education: { school, degree, fieldofstudy, current, to, from, description }
@@ -8,10 +9,9 @@ const ProfileEducation = ({
   <div>
     <h5>{school}</h5>
     <p>
-      {' '}
       <i className="fa fa-calendar"></i>
-      <Moment format="MMM YYYY">{from}</Moment> - &nbsp;
-      {to === null ? ' Now' : <Moment format="MMM YYYY">{to}</Moment>}
+      <Moment format="MMM YYYY">{moment.utc(from)}</Moment> -{' '}
+      {!to ? ' Now' : <Moment format="MMM YYYY">{moment.utc(to)}</Moment>}
     </p>
     <p>
       <strong>Degree:</strong> {degree}
