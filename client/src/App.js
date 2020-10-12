@@ -12,8 +12,6 @@ import { loadUser } from './actions/authActions';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import './App.css';
-
 const App = () => {
   useEffect(() => {
     // check for token in LS

@@ -66,7 +66,7 @@ const BlogItem = ({
                   <span className="badge badge-light">{comments.length}</span>
                 </button>
 
-                {!auth.loading && user === auth.user._id && (
+                {!auth.loading && user === auth.user._id && user.isAdmin && (
                   <button
                     onClick={() => deleteBlog(_id)}
                     type="button"

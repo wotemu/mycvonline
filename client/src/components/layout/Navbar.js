@@ -25,6 +25,11 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
           <i className="fas fa-book"></i> Feed
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/search">
+          <i className="fas fa-search"></i> Search
+        </Link>
+      </li>
 
       <li className="nav-item dropdown">
         <span
@@ -50,11 +55,18 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
             <i className="fas fa-address-card"></i>{' '}
             <span className="dropdown-menu-link"> My Dashboard</span>
           </Link>
-
-          <Link className="nav-link pl-2" to="/add-blog">
-            <i className="fas fa-rss"></i>{' '}
-            <span className="dropdown-menu-link"> Add Blog</span>
-          </Link>
+          {user && user.isAdmin && (
+            <Link className="nav-link pl-2" to="/add-blog">
+              <i className="fas fa-rss"></i>{' '}
+              <span className="dropdown-menu-link"> Add Blog</span>
+            </Link>
+          )}
+          {user && user.isAdmin && (
+            <Link className="nav-link pl-2" to="/admin">
+              <i className="fas fa-user"></i>{' '}
+              <span className="dropdown-menu-link"> Admin</span>
+            </Link>
+          )}
 
           <Link className="nav-link pl-2 " to="">
             <span onClick={logout}>

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import ReadMore from './ReadMore';
 import Moment from 'react-moment';
 
-import CommentForm from '../post/CommentForm';
-import CommentFeed from '../post/CommentFeed';
+import CommentForm from './comment/CommentForm';
+import CommentFeed from './comment/CommentFeed';
 
 import { deletePost, addLike, removeLike } from '../../actions/postActions';
 import AvatarImage from '../../img/avatar.jpg';

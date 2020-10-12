@@ -2,21 +2,23 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Alert from './layout/Alert';
 import PrivateRoute from './common/PrivateRoute';
+import AdminRoute from './common/AdminRoute';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import CreateProfile from './create-profile/CreateProfile';
 import EditProfile from './create-profile/EditProfile';
 
-import Dashboard from './dashboard/Dashboard';
+import Dashboard from './mydashboard/Mydashboard';
+import AdminPage from './admin/AdminPage';
 
-import AddExperience from './add-credentials/AddExperience';
-import AddEducation from './add-credentials/AddEducation';
-import AddSkills from './add-credentials/AddSkills';
-import AddHobbies from './add-credentials/AddHobbies';
-import AddPortfolio from './add-credentials/AddPortfolio';
+import AddExperience from './profile-credentials/AddExperience';
+import AddEducation from './profile-credentials/AddEducation';
+import AddSkills from './profile-credentials/AddSkills';
+import AddHobbies from './profile-credentials/AddHobbies';
+import AddPortfolio from './profile-credentials/AddPortfolio';
 import Profiles from './profiles/Profiles';
 import Profile from './profile/Profile';
-import AddReference from './add-credentials/AddReference';
+import AddReference from './profile-credentials/AddReference';
 
 import Posts from './posts/Posts';
 import Blogs from './blogs/Blogs';
@@ -45,7 +47,9 @@ const Routes = (props) => {
         <PrivateRoute exact path="/add-portfolio" component={AddPortfolio} />
         <PrivateRoute exact path="/add-hobby" component={AddHobbies} />
         <PrivateRoute exact path="/add-skill" component={AddSkills} />
-        <PrivateRoute exact path="/add-blog" component={BlogForm} />
+        <AdminRoute exact path="/add-blog" component={BlogForm} />
+        <AdminRoute exact path="/admin" component={AdminPage} />
+
         <PrivateRoute exact path="/feed" component={Posts} />
         <PrivateRoute exact path="/blogs" component={Blogs} />
         <PrivateRoute exact path="/blog/:id" component={Blog} />

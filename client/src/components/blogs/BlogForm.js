@@ -14,20 +14,22 @@ class BlogForm extends Component {
       text: '',
       title: '',
       filePath: '',
-      errors: {}
+      auth: this.props.auth
     };
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
+    const { isAdmin } = this.state.auth.user;
     let formData = {
       title: this.state.title,
       text: this.state.text,
       filePath: this.state.filePath
     };
-
-    this.props.addBlog(formData, this.props.history);
+    if (isAdmin) {
+      this.props.addBlog(formData, this.props.history);
+    }
   };
 
   onChange = (e) => {
@@ -80,4 +82,8 @@ BlogForm.propTypes = {
   addBlog: PropTypes.func.isRequired
 };
 
-export default connect(null, { addBlog })(BlogForm);
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { addBlog })(BlogForm);
