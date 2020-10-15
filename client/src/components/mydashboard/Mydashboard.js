@@ -35,9 +35,8 @@ const Dashboard = ({
             }
             alt=""
           />
-          <Link to={`/profile/${user && user._id}`} className="">
-            <span className="">{user && user.name} </span>
-          </Link>
+
+          <span className="">{user && user.name} </span>
         </div>
         {profile !== null ? (
           <Fragment>
@@ -58,8 +57,8 @@ const Dashboard = ({
           </Fragment>
         ) : (
           <div className="dashbord-content">
-            <p>You have not yet setup a profile</p>
-            <Link to="/create-profile" className="btn">
+            <h2 style={{ color: 'black' }}>You have not yet setup a profile</h2>
+            <Link to="/create-profile" className="btn btn-info m-2 ">
               Create Profile
             </Link>
           </div>

@@ -772,7 +772,7 @@ h5 {
 }
 
 .dashbord-img {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--primary);
   padding-bottom: 10px;
 }
 
@@ -784,7 +784,7 @@ h5 {
 }
 
 .dashbord-content {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--primary);
 }
 
 .dashbord-content h5 {

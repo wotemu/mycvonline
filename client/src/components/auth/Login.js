@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../actions/authActions';
+import LoginWithGoogle from './GoogleLogin';
 
 import { connect } from 'react-redux';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -30,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <div className="reigister">
       <div className="register-form">
-        <h2>Log In</h2>
+        <h2>Sign In</h2>
         <h5>Sign in to your account</h5>
         <form onSubmit={onSubmit}>
           <TextFieldGroup
@@ -60,6 +61,8 @@ const Login = ({ login, isAuthenticated }) => {
             </Link>
           </p>
         </form>
+
+        <LoginWithGoogle />
       </div>
     </div>
   );

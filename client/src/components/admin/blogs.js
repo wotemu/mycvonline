@@ -12,8 +12,6 @@ const AllBlogs = ({ getBlogs, blog: { blogs } }) => {
     getBlogs();
   }, [getBlogs]);
 
-  console.log(blogs);
-
   const blogItem = blogs.map((m, index) => (
     <tr key={m._id} className="table-justify">
       <td>{m._id}</td>

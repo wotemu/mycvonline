@@ -4,25 +4,19 @@ import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
 import AvatarImg from '../../img/avatar.jpg';
 
-const ProfileItem = ({
-  profile: {
-    filePath,
-    user: { _id, name },
-    status
-  }
-}) => {
+const ProfileItem = ({ profile: { filePath, user, status } }) => {
   return (
     <Fragment>
-      <Link to={`/profile/${_id}`}>
+      <Link to={`/profile/${user && user._id}`}>
         <img
           src={isEmpty(filePath) ? AvatarImg : filePath}
           alt=""
           className="img-fluid"
         />
       </Link>
-      <h6>{name}</h6>
+      <h6>{user && user.name}</h6>
       <p>{status} </p>
-      <Link to={`/profile/${_id}`} className="btn-small">
+      <Link to={`/profile/${user && user._id}`} className="btn-small">
         View Profile
       </Link>
     </Fragment>

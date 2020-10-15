@@ -6,8 +6,7 @@ import Moment from 'react-moment';
 import AvatarImg from '../../img/avatar.jpg';
 
 const AllUsers = ({ auth: { user } }) => {
-  console.log(user);
-
+  
   const userItem =
     user &&
     user.map((m, index) => (

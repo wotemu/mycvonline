@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { register } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { setAlert } from '../../actions/alert';
+import LoginWithGoogle from './GoogleLogin';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -77,6 +78,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             </Link>
           </p>
         </form>
+        <LoginWithGoogle />
       </div>
     </div>
   );

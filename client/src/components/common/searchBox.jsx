@@ -33,7 +33,7 @@ class Search extends React.Component {
   onChangeHandler(e) {
     let newArray = this.apiProfiles.filter((d) => {
       return (
-        d.user.name.toLowerCase().indexOf(e.target.value) !== -1 ||
+        (d.user && d.user.name.toLowerCase().indexOf(e.target.value) !== -1) ||
         d.status.toLowerCase().indexOf(e.target.value) !== -1
       );
     });
@@ -66,8 +66,8 @@ class Search extends React.Component {
           {!isLoading ? (
             profiles.map((m) => {
               return (
-                <div className="box" key={m.user._id}>
-                  <Link to={`/profile/${m.user._id}`}>
+                <div className="box" key={m.user && m.user._id}>
+                  <Link to={`/profile/${m.user && m.user._id}`}>
                     <img
                       src={isEmpty(m.filePath) ? AvatarImg : m.filePath}
                       alt=""
@@ -75,9 +75,12 @@ class Search extends React.Component {
                       style={{ maxWidth: '140px', maxHeight: '140px' }}
                     />
                   </Link>
-                  <h6>{m.user.name}</h6>
+                  <h6>{m.user && m.user.name}</h6>
                   <p>{m.status} </p>
-                  <Link to={`/profile/${m.user._id}`} className="btn-small">
+                  <Link
+                    to={`/profile/${m.user && m.user._id}`}
+                    className="btn-small"
+                  >
                     View Profile
                   </Link>
                 </div>

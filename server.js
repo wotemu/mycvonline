@@ -3,6 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const path = require('path');
+// Config dotev
+require('dotenv').config({
+  path: './config/config.env'
+});
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -39,6 +43,15 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/blogs', require('./routes/api/blogs'));
+
+// Dev Logginf Middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(
+    cors({
+      origin: process.env.CLIENT_URL
+    })
+  );
+}
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

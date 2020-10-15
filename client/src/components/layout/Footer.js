@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../../img/logo.png';
 
 export default () => {
@@ -38,7 +39,9 @@ export default () => {
         </a>
       </section>
       <div>
-        <img src={Logo} alt="logo" />
+        <Link className="navbar-brand" to="/profiles">
+          <img src={Logo} alt="" />
+        </Link>
       </div>
       Copyright &copy; {new Date().getFullYear()} - wotemu@gmail.com
     </footer>
