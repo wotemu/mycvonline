@@ -1,25 +1,27 @@
-# mypersonalblogapp
+# mycv-online-app
 
-Personal blog
+# blog
 
-## Quick Start
+node-mongo-cloudinary-multer-react
+NodeJS + MongoDB + multer + cloudinary API with Email Sign Up, Authentication and Authorization
+React + Bootstrap for the frontend
 
-```bash
+Quick Start
+
 # Install dependencies for server and client
+
 npm install
 
 # Run the client & server with concurrently
+
 npm run dev
 
 # Run the Express server and client independetly
+
 npm run server # Server runs on http://localhost:5000
 npm run client # Client on http://localhost:3000
 
+create .env and copy the .example.env file into .env
+.example.env ---> .env
 
-Create a config folder and then keys_dev.js then copy the following:
-
-module.exports = {
-  mongoURI: 'YOUR_OWN_MONGO_URI',
-  secretOrKey: 'YOUR_OWN_SECRET'
-};
-```
+chnage the contents

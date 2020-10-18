@@ -3,10 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const path = require('path');
-// Config dotev
-require('dotenv').config({
-  path: './config/config.env'
-});
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
